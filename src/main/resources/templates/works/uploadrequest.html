@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>[Обновление заявки]</title>
+
+    <link rel="stylesheet" th:href="@{/css/styletabs.css}" />
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="menu">
+                <div class="abs edit_block">
+                    <a th:href="@{..#process_requests}" class="backmodel">НАЗАД</a>
+                    <a th:href="@{..#new_requests}">НОВЫЕ ЗАЯВКИ</a>
+                    <b><a th:href="@{..#process_requests}">В ПРОЦЕССЕ</a></b>
+                    <a th:href="@{..#completed_requests}">ЗАВЕРШЁННЫЕ ЗАЯВКИ</a>
+                    <a th:href="@{..#all_requests}">ВСЕ ЗАЯВКИ</a>
+                    <hr>
+
+                    <form method="post" enctype="multipart/form-data">
+                        <p style="padding-left: 5%">ОБНОВЛЕНИЕ ЗАЯВКИ ОТ&nbsp;</p><p th:text="*{upd_request.getRequestsModel().date}"></p><br>
+                        <div class="edit_form">
+                            <div class="form-group-left">
+                                <div class="field">
+                                    <label for="name">Название:</label>
+                                    <input class="hidden-input" type="text" th:value="*{upd_request.getRequestsModel().nameProject}" id="name" readonly />
+                                </div>
+                                <div class="field" >
+                                    <div th:if="${upd_request.pathToModel != null}">
+                                        <label for="path">Путь к модели:</label>
+                                        <input class="hidden-input" type="text" th:value="*{upd_request.pathToModel}" id="path" readonly />
+                                    </div>
+
+                                    <div th:if="${upd_request.pathToModel == null}">
+                                        <label for="pathnull">Путь к модели:</label>
+                                        <input class="hidden-input" type="text" th:value="Отсутствует" id="pathnull" readonly />
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label for="uploaded-file-blend">Загрузить модель:</label>
+                                    <input type="file" name="file" id="uploaded-file-blend" />
+                                </div>
+                                <div class="field inline">
+                                    <label>
+                                        <button class="btn btn-secondary" type="submit">Сохранить</button>
+                                    </label>
+                                    <div class="field inline">
+                                        <label>
+                                            <a th:href="@{..#process_requests}">
+                                                <input type="button" class="btn btn-secondary btn-href" value="Отмена"/>
+                                            </a>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+</html>

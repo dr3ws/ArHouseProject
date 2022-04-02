@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Панель админа [Отчёт]</title>
+
+    <link rel="stylesheet" th:href="@{../../../css/styletabs.css}" />
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="menu">
+                <div class="abs edit_block">
+                    <a th:href="@{/arhouse.arh/admin#reports}" class="backmodeladm">НАЗАД</a>
+                    <a th:href="@{/arhouse.arh/admin#personnel}">ПЕРСОНАЛ</a>
+                    <a th:href="@{/arhouse.arh/admin#requests}">ЗАЯВКИ</a>
+                    <a th:href="@{/arhouse.arh/admin#shops}">МАГАЗИНЫ</a>
+                    <b><a th:href="@{/arhouse.arh/admin#reports}">ОТЧЁТЫ</a></b>
+                    <hr>
+                </div>
+
+                <form method="post" enctype="multipart/form-data">
+                    <p style="padding-left: 5%">ОТЧЁТ&nbsp;</p><br>
+                    <table class="readyreport">
+                        <tr>
+                            <th class="col1">Мебель</th>
+                            <th class="col1">Цена</th>
+                            <th class="col2">Категория</th>
+                            <th class="col1">Магазин</th>
+                            <th class="col1">Наличие в магазине</th>
+                            <th class="col1">Использовано<br>в модели</th>
+                        </tr>
+                            <tr th:each="report : ${ready_report}">
+                                <td th:text="${report.getNameFurniture()}">VALUE</td>
+                                <td th:text="${report.getPriceFurniture()}">VALUE</td>
+                                <td th:text="${report.getCategories()}">VALUE</td>
+                                <td th:text="${report.getNameShop()}">VALUE</td>
+                                <td th:text="${report.getCountShop()}">VALUE</td>
+                                <td th:text="${report.getCountProject()}">VALUE</td>
+                            </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+</html>

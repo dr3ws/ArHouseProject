@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Панель админа [Добавление рабочего]</title>
+
+    <link rel="stylesheet" th:href="@{../../../css/styletabs.css}" />
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="menu">
+                <div class="abs edit_block">
+                    <a th:href="@{/arhouse.arh/admin#shopsfurniture}" class="backmodeladm">НАЗАД</a>
+                    <a th:href="@{/arhouse.arh/admin#personnel}">ПЕРСОНАЛ</a>
+                    <a th:href="@{/arhouse.arh/admin#requests}">ЗАЯВКИ</a>
+                    <b><a th:href="@{/arhouse.arh/admin#shops}">МАГАЗИНЫ</a></b>
+                    <a th:href="@{/arhouse.arh/admin#reports}">ОТЧЁТЫ</a>
+                    <hr>
+                </div>
+
+                <form method="post" enctype="multipart/form-data">
+                    <p style="padding-left: 5%">ЗАГРУЗКА НОВОЙ МЕБЕЛИ</p><br>
+                    <div class="edit_form_work">
+                        <div class="field">
+                            <label for="uploaded-file-csv">CSV файл (.csv):</label>
+                            <input type="file" name="file" id="uploaded-file-csv">
+                        </div>
+                        <div class="field inline">
+                            <label>
+                                <button class="btn btn-secondary" type="submit">Загрузить</button>
+                            </label>
+                            <div class="field inline">
+                                <label>
+                                    <a th:href="@{/arhouse.arh/addfurniture}">
+                                        <input type="button" class="btn btn-secondary btn-href" value="Отмена"/>
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+</html>

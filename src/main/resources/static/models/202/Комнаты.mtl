@@ -1,0 +1,82 @@
+# Blender MTL File: 'Комнаты.blend'
+# Material Count: 9
+
+newmtl None
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd 3.jpg
+
+newmtl None_4.jpg
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd 4.jpg
+
+newmtl None_5.jpg
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd 5.jpg
+
+newmtl None_6.jpg
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd 6.jpg
+
+newmtl None_7.jpg
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd 7.jpg
+
+newmtl None_NONE
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+
+newmtl None_door.jpg
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd door.jpg
+
+newmtl None_floor.jpg
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd floor.jpg
+
+newmtl None_window
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd window.png

@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Панель админа</title>
+
+    <link rel="stylesheet" th:href="@{../css/styletabs.css}" />
+
+    <style>
+        li {list-style-type: none;}
+    </style>
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="menu">
+                <div id="reports" class="abs block">
+                    <a href="#view_window" class="admin">ПАНЕЛЬ АДМИНИСТРАТОРА</a>
+                    <a href="#personnel">ПЕРСОНАЛ</a>
+                    <a href="#requests">ЗАЯВКИ</a>
+                    <a href="#shops">МАГАЗИНЫ</a>
+                    <b><a href="#reports">ОТЧЁТЫ</a></b>
+                    <br> <hr> <br>
+                    <table>
+                        <tr>
+                            <th class="col1">Имя</th>
+                            <th class="col1">Фамилия</th>
+                            <th class="col2">Адрес<br>электронной почты</th>
+                            <th class="col1">Адрес</th>
+                            <th class="col1">Дата</th>
+                            <th class="col1">Название<br>проекта</th>
+                            <th class="col1">Отчёт</th>
+                            <th class="col1">Действие</th>
+                        </tr>
+                        <tr th:each="report : ${reports_item}" th:if="${report.getRequestsModel().getStatusModel().id == 2}">
+                            <td th:text="${report.getRequestsModel().firstName}">VALUE</td>
+                            <td th:text="${report.getRequestsModel().secondName}">VALUE</td>
+                            <td th:text="${report.getRequestsModel().email}">VALUE</td>
+                            <td th:text="${report.getRequestsModel().address}">VALUE</td>
+                            <td th:text="${report.getRequestsModel().date}">VALUE</td>
+                            <td th:text="${report.getRequestsModel().nameProject}">VALUE</td>
+                            <td th:if="${report.approvedReport == false}">
+                                <label class="label-checkbox">
+                                    <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                </label>
+                            </td>
+                            <td th:if="${report.approvedReport == true}">
+                                <label class="label-checkbox">
+                                    <input type="checkbox" class="checkbox-path"  checked onclick="return false;" />
+                                </label>
+                            </td>
+
+                            <td class="action" th:if="${report.approvedReport == false}">
+                                <form method="get" th:action="@{/arhouse.arh/admin/createreports/{id}(id = ${report.getRequestsModel().getId()})}">
+                                    <button type="submit" class="btn btn-secondary">Создать отчёт</button>
+                                </form>
+                            </td>
+                            <td class="action" th:if="${report.approvedReport == true}">
+                                <form method="get" th:action="@{/arhouse.arh/admin/readyreport/{id}(id = ${report.getRequestsModel().getId()})}">
+                                    <button style="width:130px" type="submit" class="btn btn-secondary">Перейти</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="shopsfurniture" class="abs tabs block">
+                    <a href="#view_window" class="admin">ПАНЕЛЬ АДМИНИСТРАТОРА</a>
+                    <a href="#personnel">ПЕРСОНАЛ</a>
+                    <a href="#requests">ЗАЯВКИ</a>
+                    <b><a href="#shops">МАГАЗИНЫ</a></b>
+                    <a href="#reports">ОТЧЁТЫ</a>
+
+                    <br> <hr>
+
+                    <a href="#shops">Магазины</a>
+                    <b><a href="#shopsfurniture">Мебель</a></b>
+
+                    <br><br>
+
+                    <ul class="treeline">
+                        <li>Категории мебели
+                            <ul>
+                                <li>
+                                    <div class="drop">+</div>Ванная
+                                    <ul>
+                                        <li><div class="drop">+</div>Ванна
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Ванная' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 13}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                        <li><div class="drop">+</div>Вешалка
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Ванная' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 14}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                        <li><div class="drop">+</div>Тумба
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Ванная' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 15}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <div class="drop">+</div>Жилая
+                                    <ul>
+                                        <li><div class="drop">+</div>Диван
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Жилая' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 0}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                        <li><div class="drop">+</div>Кресло
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Жилая' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 1}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                        <li><div class="drop">+</div>Кровать
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Жилая' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 2}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                        <li><div class="drop">+</div>Стол
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Жилая' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 3}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                        <li><div class="drop">+</div>Стул
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Жилая' &&
+                                                            shopsfurniture.getFurnituresModel().getCategoriesModel().id == 4}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                        <li><div class="drop">+</div>Тумба
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Жилая' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 5}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                        <li><div class="drop">+</div>Шкаф
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Жилая' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 6}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <div class="drop">+</div>Кухня
+                                    <ul>
+                                        <li><div class="drop">+</div>Ганитур
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Кухонная' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 7}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                        <li><div class="drop">+</div>Стол
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Кухонная' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 8}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                        <li><div class="drop">+</div>Табурет
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Кухонная' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 9}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <div class="drop">+</div>Прихожая
+                                    <ul>
+                                        <li><div class="drop">+</div>Вешалка
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Прихожая' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 10}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                        <li><div class="drop">+</div>Пуф
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Прихожая' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 11}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                        <li><div class="drop">+</div>Шкаф
+                                            <ul>
+                                                <table>
+                                                    <tr>
+                                                        <th class="col2">Название</th>
+                                                        <th class="col1">Цена</th>
+                                                        <th class="col1">Количество</th>
+                                                        <th class="col1">Сумма</th>
+                                                        <th class="col2">Магазин</th>
+                                                        <th class="col1">3D модель</th>
+                                                        <th class="col2">Действия</th>
+                                                    </tr>
+                                                    <tr th:each="shopsfurniture : ${shopsfurnitures_item}"
+                                                        th:if="${shopsfurniture.getFurnituresModel().getCategoriesModel().getParentCategories() == 'Прихожая' &&
+                                                        shopsfurniture.getFurnituresModel().getCategoriesModel().id == 12}">
+                                                        <td th:text="${shopsfurniture.furnituresModel.nameFurniture}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.price}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.count}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.totalPrice}">VALUE</td>
+                                                        <td th:text="${shopsfurniture.shopsModel.nameShop}">VALUE</td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture != null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td th:if="${shopsfurniture.furnituresModel.pathToFurniture == null}">
+                                                            <label class="label-checkbox">
+                                                                <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                                            </label>
+                                                        </td>
+                                                        <td class="action">
+                                                            <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Изменить</button>
+                                                            </form>
+                                                            <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delfurniture/{id}(id = ${shopsfurniture.getId()})}">
+                                                                <button type="submit" class="btn btn-secondary">Удалить</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <form method="get" th:action="@{/arhouse.arh/admin/addfurniture}">
+                        <button type="submit" class="btn btn-secondary">Добавить мебель</button>
+                    </form>
+
+                </div>
+
+                <div id="shops" class="abs block">
+                    <a href="#view_window" class="admin">ПАНЕЛЬ АДМИНИСТРАТОРА</a>
+                    <a href="#personnel">ПЕРСОНАЛ</a>
+                    <a href="#requests">ЗАЯВКИ</a>
+                    <b><a href="#shops">МАГАЗИНЫ</a></b>
+                    <a href="#reports">ОТЧЁТЫ</a>
+
+                    <br> <hr>
+
+                    <b><a href="#shops">Магазины</a></b>
+                    <a href="#shopsfurniture">Мебель</a>
+
+                    <br>
+
+                    <table>
+                        <tr>
+                            <th class="col1">Название</th>
+                            <th class="col1">Органзация</th>
+                            <th class="col2">Адрес</th>
+                            <th class="col1-2">Телефон</th>
+                            <th class="col1">ИНН</th>
+                            <th class="col1">ОГРН</th>
+                            <th class="col1">Дата регистрации</th>
+                            <th class="col1-5">Действие</th>
+                        </tr>
+                        <tr th:each="shop : ${shops_item}">
+                            <td th:text="${shop.getNameShop()}">VALUE</td>
+                            <td th:text="${shop.getOrganizationsModel().nameOrganization}">VALUE</td>
+                            <td th:text="${shop.getAddress()}">VALUE</td>
+                            <td th:text="${shop.getTelephone()}">VALUE</td>
+                            <td th:text="${shop.getOrganizationsModel().inn}">VALUE</td>
+                            <td th:text="${shop.getOrganizationsModel().ogrn}">VALUE</td>
+                            <td th:text="${shop.getOrganizationsModel().dateRegistration}">VALUE</td>
+                            <td class="action-shop">
+                                <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editshop/{id}(id = ${shop.getId()})}">
+                                    <button class="btn btn-secondary" type="submit">Изменить</button>
+                                </form>
+                                <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delshop/{id}(id = ${shop.getId()})}">
+                                    <button type="submit" class="btn btn-secondary">Удалить</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                    <form class="inline" method="get" th:action="@{/arhouse.arh/admin/addshop}">
+                        <button type="submit" class="btn btn-secondary">Добавить магазин</button>
+                    </form>
+                    <form class="inline" method="get" th:action="@{/arhouse.arh/admin/addorganization}">
+                        <button type="submit" class="btn btn-secondary">Добавить организацию</button>
+                    </form>
+                </div>
+
+                <div id="requests" class="abs block">
+                    <a href="#view_window" class="admin">ПАНЕЛЬ АДМИНИСТРАТОРА</a>
+                    <a href="#personnel">ПЕРСОНАЛ</a>
+                    <b><a href="#requests">ЗАЯВКИ</a></b>
+                    <a href="#shops">МАГАЗИНЫ</a>
+                    <a href="#reports">ОТЧЁТЫ</a>
+
+                    <br> <hr> <br>
+
+                    <table>
+                        <tr>
+                            <th class="col1">Имя</th>
+                            <th class="col1">Фамилия</th>
+                            <th class="col2">Адрес<br>электронной почты</th>
+                            <th class="col1">Адрес</th>
+                            <th class="col1">Дата</th>
+                            <th class="col1">Название<br>проекта</th>
+                            <th class="col1-2">Статус</th>
+                            <th class="col0-5">ТЗ</th>
+                            <th class="col1">Действие</th>
+                        </tr>
+                        <tr th:each="request : ${requests_item}">
+                            <td th:text="${request.getFirstName()}">VALUE</td>
+                            <td th:text="${request.getSecondName()}">VALUE</td>
+                            <td th:text="${request.getEmail()}">VALUE</td>
+                            <td th:text="${request.getAddress()}">VALUE</td>
+                            <td th:text="${request.getDate()}">VALUE</td>
+                            <td th:text="${request.getNameProject()}">VALUE</td>
+                            <td th:text="${request.getStatusModel().status}">VALUE</td>
+                            <td th:if="${request.techTask == false}">
+                                <label class="label-checkbox">
+                                    <input type="checkbox" class="checkbox-path" onclick="return false;" />
+                                </label>
+                            </td>
+                            <td th:if="${request.techTask == true}">
+                                <label class="label-checkbox">
+                                    <input type="checkbox" class="checkbox-path" checked onclick="return false;" />
+                                </label>
+                            </td>
+                            <td class="action">
+                                <form method="get" th:action="@{/arhouse.arh/admin/editrequest/{id}(id = ${request.getId()})}">
+                                    <button class="btn btn-secondary" type="submit">Изменить</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="personnel" class="abs block">
+                    <a href="#view_window" class="admin">ПАНЕЛЬ АДМИНИСТРАТОРА</a>
+                    <b><a href="#personnel">ПЕРСОНАЛ</a></b>
+                    <a href="#requests">ЗАЯВКИ</a>
+                    <a href="#shops">МАГАЗИНЫ</a>
+                    <a href="#reports">ОТЧЁТЫ</a>
+
+                    <br> <hr>
+
+                    <div>
+                        <p>АДМИНИСТРАТОРЫ</p><hr>
+                        <table>
+                            <tr>
+                                <th class="col3">Имя</th>
+                                <th class="col3">Фамилия</th>
+                                <th class="col2">Действия</th>
+                            </tr>
+                            <tr th:each="admin_item : ${admins_item}" th:if="${admin_item.getRoles().id == 0}">
+                                <td th:text="${admin_item.getFirstName()}">VALUE</td>
+                                <td th:text="${admin_item.getSecondName()}">VALUE</td>
+                                <td class="action">
+                                    <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editwork/{id}(id = ${admin_item.getId()})}">
+                                        <button type="submit" class="btn btn-secondary">Изменить</button>
+                                    </form>
+                                    <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delwork/{id}(id = ${admin_item.getId()})}">
+                                        <button type="submit" class="btn btn-secondary">Удалить</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div>
+                        <hr><p>МОДЕЛЬЕРЫ</p><hr>
+                        <table>
+                            <tr>
+                                <th class="col3">Имя</th>
+                                <th class="col3">Фамилия</th>
+                                <th class="col2">Действия</th>
+                            </tr>
+                            <tr th:each="admin_item : ${admins_item}" th:if="${admin_item.getRoles().id == 1}">
+                                <td th:text="${admin_item.getFirstName()}">VALUE</td>
+                                <td th:text="${admin_item.getSecondName()}">VALUE</td>
+                                <td class="action">
+                                    <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editwork/{id}(id = ${admin_item.getId()})}">
+                                        <button type="submit" class="btn btn-secondary">Изменить</button>
+                                    </form>
+                                    <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delwork/{id}(id = ${admin_item.getId()})}">
+                                        <button type="submit" class="btn btn-secondary">Удалить</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div>
+                        <hr><p>ДИЗАЙНЕРЫ</p><hr>
+                        <table>
+                            <tr>
+                                <th class="col3">Имя</th>
+                                <th class="col3">Фамилия</th>
+                                <th class="col2">Действия</th>
+                            </tr>
+                            <tr th:each="admin_item : ${admins_item}" th:if="${admin_item.getRoles().id == 2}">
+                                <td th:text="${admin_item.getFirstName()}">VALUE</td>
+                                <td th:text="${admin_item.getSecondName()}">VALUE</td>
+                                <td class="action">
+                                    <form class="inline" method="get" th:action="@{/arhouse.arh/admin/editwork/{id}(id = ${admin_item.getId()})}">
+                                        <button type="submit" class="btn btn-secondary">Изменить</button>
+                                    </form>
+                                    <form class="inline" method="post" th:action="@{/arhouse.arh/admin/delwork/{id}(id = ${admin_item.getId()})}">
+                                        <button type="submit" class="btn btn-secondary">Удалить</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table><hr>
+                    </div>
+                    <form method="get" th:action="@{/arhouse.arh/admin/addwork}">
+                        <button type="submit" class="btn btn-secondary">Добавить работника</button>
+                    </form>
+                </div>
+
+                <div id="view_window_edit">
+                    <div id="window_edit">
+                        <form class="inline form-gear" method="get" th:action="@{#view_window}">
+                            <button type="submit" class="gear-button">
+                                <img th:src="@{../images/template/gear_fill_icon.png}" class="img-gear" alt="Image">
+                            </button>
+                        </form>
+                        <form class="inline form-window" method="post" th:action="@{/arhouse.arh/admin/editme/{id}(id = ${admin_session.getId()})}">
+                            <p style="padding-left: 5%">Изменение перональных данных</p><br>
+                            <div>
+                                <div class="edit_form_work">
+                                    <div class="form-group field">
+                                        <label for="first_name">Имя:</label>
+                                        <input class="input-window" type="text" th:field="*{admin_session.firstName}" id="first_name" autocomplete="off" required />
+                                    </div>
+                                    <div class="form-group field">
+                                        <label for="second_name">Фамилия:</label>
+                                        <input class="input-window" type="text" th:field="*{admin_session.secondName}" id="second_name" autocomplete="off" required />
+                                    </div>
+                                    <div class="hidden-block">
+                                        <label for="role"></label>
+                                        <input type="text" th:field="*{admin_session.roles.id}" id="role" autocomplete="off" readonly />
+                                    </div>
+                                    <div class="form-group field">
+                                        <label for="login">Логин авторизации:</label>
+                                        <input class="input-window" type="text" th:field="*{admin_session.username}" id="login" autocomplete="off" required />
+                                    </div>
+                                    <div class="form-group field">
+                                        <label for="password">Пароль авторизации:</label>
+                                        <input class="input-window" type="text" th:field="*{admin_session.password}" id="password" autocomplete="off" required />
+                                    </div>
+                                    <div class="form-group field">
+                                        <label><button class="btn btn-secondary" type="submit">Сохранить</button></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="view_window">
+                    <div id="window">
+                        <p style="padding-left:5%">Текущая сессия:</p><br>
+                        <ul style="padding-left:15%">
+                            <li><p>Имя:&nbsp;</p><p th:text="*{admin_session.firstName}"></p></li>
+                            <li><p>Фамилия:&nbsp;</p><p th:text="*{admin_session.secondName}"></p></li>
+                        </ul>
+
+                        <form class="inline form-gear" method="get" th:action="@{#view_window_edit}">
+                            <button type="submit" class="gear-button">
+                                <img th:src="@{../images/template/gear_fill_icon.png}" class="img-gear" alt="Image">
+                            </button>
+                        </form>
+
+                        <form class="inline form-close" method="get" th:action="@{#}">
+                            <button type="submit" class="btn btn-secondary">Закрыть</button>
+                        </form>
+                        <form class="inline form-logout" method="post" th:action="@{/logout}">
+                            <button type="submit" class="btn btn-secondary">Выход</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js}" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(function() {
+        let ul = document.querySelectorAll('.treeline > li:not(:only-child) ul, .treeline ul ul');
+        for (let i = 0; i < ul.length; i++) {
+            let div = document.createElement('div');
+
+            div.className = 'drop';
+            div.innerHTML = '+';
+            ul[i].parentNode.insertBefore(div, ul[i].previousSibling);
+            div.onclick = function() {
+                this.innerHTML = (this.innerHTML === '+' ? '−' : '+');
+                this.className = (this.className === 'drop' ? 'drop dropM' : 'drop');
+            }
+        }
+    })();
+</script>
+
+</html>

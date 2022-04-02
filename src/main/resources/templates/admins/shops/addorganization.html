@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Панель админа [Добавление организации]</title>
+
+    <link rel="stylesheet" th:href="@{../../css/styletabs.css}" />
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="menu">
+                <div class="abs edit_block">
+                    <a th:href="@{/arhouse.arh/admin#shops}" class="backmodeladm">НАЗАД</a>
+                    <a th:href="@{/arhouse.arh/admin#personnel}">ПЕРСОНАЛ</a>
+                    <a th:href="@{/arhouse.arh/admin#requests}">ЗАЯВКИ</a>
+                    <b><a th:href="@{/arhouse.arh/admin#shops}">МАГАЗИНЫ</a></b>
+                    <a th:href="@{/arhouse.arh/admin#reports}">ОТЧЁТЫ</a>
+                    <hr>
+                </div>
+
+                <form method="post" th:object="${add_organization}">
+                    <p style="padding-left: 5%">ДОБАВЛЕНИЕ ОРГАНИЗАЦИИ</p><br>
+                    <div class="edit_form_work">
+                        <div class="field">
+                            <label for="name">Название:</label>
+                            <input type="text" th:field="*{nameOrganization}" id="name" placeholder="Введите названи организации" autocomplete="off" />
+                        </div>
+                        <div class="alert-haserror-addorg" th:if="${#fields.hasErrors('nameOrganization')}" th:errors="*{nameOrganization}">
+                            ERROR
+                        </div>
+
+                        <div class="field">
+                            <label for="address">Юридический адрес:</label>
+                            <input type="text" th:field="*{urAddress}" id="address" placeholder="Введите адрес" autocomplete="off" />
+                        </div>
+                        <div class="alert-haserror-addorg" th:if="${#fields.hasErrors('urAddress')}" th:errors="*{urAddress}">
+                            ERROR
+                        </div>
+
+                        <div class="field">
+                            <label for="organization">ИНН:</label>
+                            <input type="text" th:field="*{inn}" id="organization" placeholder="Введите ИНН" autocomplete="off" maxlength="12" />
+                        </div>
+                        <div class="alert-haserror-addorg" th:if="${#fields.hasErrors('inn')}" th:errors="*{inn}">
+                            ERROR
+                        </div>
+
+                        <div class="field">
+                            <label for="ogrn">ОГРН:</label>
+                            <input type="text" th:field="*{ogrn}" id="ogrn" placeholder="Введите ОГРН" autocomplete="off"  maxlength="13" />
+                        </div>
+                        <div class="alert-haserror-addorg" th:if="${#fields.hasErrors('ogrn')}" th:errors="*{ogrn}">
+                            ERROR
+                        </div>
+
+                        <div class="field">
+                            <label for="bank">Реквизиты банка:</label>
+                            <input type="text" th:field="*{bankDetails}" id="bank" placeholder="Введите реквизиты банка" autocomplete="off" />
+                        </div>
+                        <div class="alert-haserror-addorg" th:if="${#fields.hasErrors('bankDetails')}" th:errors="*{bankDetails}">
+                            ERROR
+                        </div>
+
+                        <div class="field">
+                            <label for="telephone">Телефон:</label>
+                            <input type="text" th:field="*{telephone}" id="telephone" placeholder="+7(___)___-__-__" autocomplete="off" />
+                        </div>
+                        <div class="field">
+                            <label for="dateRegistration">Дата регистраци:</label>
+                            <input type="date" th:field="*{dateRegistration}" id="dateRegistration" autocomplete="off" />
+                        </div>
+                        <div class="alert-haserror-addorg" th:if="${#fields.hasErrors('dateRegistration')}" th:errors="*{dateRegistration}">
+                            ERROR
+                        </div>
+
+                        <div class="field inline">
+                            <label>
+                                <button class="btn btn-secondary" type="submit">Сохранить</button>
+                            </label>
+                            <div class="field inline">
+                                <label>
+                                    <a th:href="@{/arhouse.arh/admin#shops}">
+                                        <input type="button" class="btn btn-secondary btn-href" value="Отмена"/>
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js}" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+<script th:src="@{https://silverweb.by/wp-content/themes/consultix/js/jquery.maskedinput.min.js}"></script>
+<script>
+    $(document).ready(function() {
+        $("#telephone").mask("+7(999)999-99-99");
+    });
+</script>
+</html>

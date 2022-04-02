@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Панель админа [Редактирование заявки]</title>
+
+    <link rel="stylesheet" th:href="@{../../../css/styletabs.css}" />
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="menu">
+                <div class="abs edit_block">
+                    <a th:href="@{/arhouse.arh/admin#requests}" class="backmodeladm">НАЗАД</a>
+                    <a th:href="@{/arhouse.arh/admin#personnel}">ПЕРСОНАЛ</a>
+                    <b><a th:href="@{/arhouse.arh/admin#requests}">ЗАЯВКИ</a></b>
+                    <a th:href="@{/arhouse.arh/admin#shops}">МАГАЗИНЫ</a>
+                    <a th:href="@{/arhouse.arh/admin#reports}">ОТЧЁТЫ</a>
+                    <hr>
+                </div>
+
+                <form method="post" th:object="${edit_request}" enctype="multipart/form-data">
+                    <p style="padding-left: 5%">РЕДАКТИРОВАНИЕ ЗАЯВКИ ОТ&nbsp;</p><p th:text="*{date}"></p><br>
+                    <div class="hidden-block">
+                        <label for="data"></label>
+                        <input type="text" id="data" th:field="*{date}" readonly />
+                        <label for="name"></label>
+                        <input type="text" id="name" th:if="${edit_request.worksModel != null}" th:field="*{worksModel}" readonly />
+                        <label for="techtask"></label>
+                        <input type="text" id="techtask" th:field="*{techTask}" readonly />
+                        <label for="token"></label>
+                        <input type="text" id="token" th:field="*{token}" readonly />
+                    </div>
+                    <div th:if="${edit_request.worksModel != null}">
+                        <p style="padding-left: 5%">Принял заявку:&nbsp;</p><p th:text="*{getWorksModel().firstName}"></p><p>&nbsp;</p><p th:text="*{getWorksModel().secondName}"></p><br>
+                    </div>
+                    <div th:if="${edit_request.worksModel == null}">
+                        <p style="padding-left: 5%">Заявка ещё не принята&nbsp;</p>
+                    </div>
+
+                    <div class="edit_form">
+                        <div class="form-group-left">
+                            <div class="field">
+                                <label for="firstName">Имя:</label>
+                                <input type="text" th:field="*{firstName}" id="firstName" placeholder="Введите имя" autocomplete="off" required />
+                            </div>
+                            <div class="alert-haserror-request" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                                ERROR
+                            </div>
+
+                            <div class="field">
+                                <label for="secondName">Фамилия:</label>
+                                <input type="text" th:field="*{secondName}" id="secondName" placeholder="Введите фамилию" autocomplete="off" required />
+                            </div>
+                            <div class="alert-haserror-request" th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}">
+                                ERROR
+                            </div>
+
+                            <div class="field">
+                                <label for="email">Адрес электронной почты:</label>
+                                <input type="text" th:field="*{email}" id="email" placeholder="Введите электронную почту" autocomplete="off" required />
+                            </div>
+                            <div class="alert-haserror-request" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                                ERROR
+                            </div>
+
+                            <div class="field">
+                                <label for="address">Адрес:</label>
+                                <input type="text" th:field="*{address}" id="address" placeholder="Введите адрес" autocomplete="off" required />
+                            </div>
+                            <div class="alert-haserror-request" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">
+                                ERROR
+                            </div>
+
+                            <div class="field block-href" th:if="${edit_request.worksModel != null}">
+                                <label for="name_object">Название объекта:</label>
+                                <input type="text" th:field="*{nameProject}" id="name_object" placeholder="Введите название объекта" autocomplete="off" />
+                                <a th:href="@{/arhouse.arh/admin/editrequest/{id}/editmodel(id = ${edit_request.getId()})}">Перейти</a>
+                            </div>
+                            <div class="field block-href" th:if="${edit_request.worksModel == null}">
+                                <label for="name_objectnull">Название объекта:</label>
+                                <input type="text" th:field="*{nameProject}" id="name_objectnull" placeholder="Введите название объекта" autocomplete="off" />
+                                <p>Перейти</p>
+                            </div>
+                            <div class="alert-haserror-request" th:if="${#fields.hasErrors('nameProject')}" th:errors="*{nameProject}">
+                                ERROR
+                            </div>
+
+
+                            <div class="field" >
+                                <div th:if="${edit_request.planeProject != null}">
+                                    <label>План объекта:</label>
+                                    <a th:href="@{${edit_request.getPlaneProject()}}" target="_blank">
+                                        <img th:src="@{../../..{path}(path = ${edit_request.planeProject})}" class="editreq" alt="Image">
+                                    </a>
+                                </div>
+
+                                <div th:if="${edit_request.planeProject == null}">
+                                    <label for="pathnull">План объекта:</label>
+                                    <input class="hidden-input" type="text" th:value="Отсутствует" id="pathnull" readonly />
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div>
+                                    <label for="updplane">Загрузить план:</label>
+                                    <input type="file" name="file" id="updplane"/>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label for="password_project">Пароль пользователя:</label>
+                                <input type="text" th:field="*{passwordProject}" id="password_project" placeholder="Введите пароль" autocomplete="off" />
+                            </div>
+                            <div class="field">
+                                <label for="statusRequest">Статус заявки:</label>
+                                <select class="custom-select" th:field="*{statusModel}" id="statusRequest">
+                                    <option th:value="0">Ожидание</option>
+                                    <option th:value="1">Процесс</option>
+                                    <option th:value="2">Завершено</option>
+                                </select>
+                            </div>
+                            <div class="field inline">
+                                <label>
+                                    <button class="btn btn-secondary" type="submit">Сохранить</button>
+                                </label>
+
+                                <div class="inline" th:if="${edit_request.techTask == false}">
+                                    <form method="post" th:action="@{/arhouse.arh/admin/delrequest/{id}(id = ${edit_request.getId()})}">
+                                        <button type="submit" class="btn btn-secondary" style="margin-top:-39px;">Удалить заявку</button>
+                                    </form>
+                                </div>
+
+                                <div class="inline" th:if="${edit_request.techTask == false}">
+                                    <form method="post" th:action="@{/arhouse.arh/admin/updtechtask/{id}(id = ${edit_request.getId()})}">
+                                        <button type="submit" class="btn btn-secondary" style="margin-top:-39px;">Оформить ТЗ</button>
+                                    </form>
+                                </div>
+
+                                <div class="inline">
+                                    <label>
+                                        <a th:href="@{/arhouse.arh/admin#requests}">
+                                            <input type="button" class="btn btn-secondary btn-href" value="Отмена"/>
+                                        </a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+</html>

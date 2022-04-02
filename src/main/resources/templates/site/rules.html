@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>[Ar House]Предварительный просмотр</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css}" integrity="sha512-ZfKn7az0YmtPUojZnRXO4CUdt3pn+ogBAyGbqGplrCIR5B/tQwPGtF2q29t+zQj6mC/20w4sSl0cF5F3r0HKSQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.1/animate.min.css}" integrity="sha512-E5hbw9GiuYofTcrbba1gAU64dn/54A9nmk4IEMzmp+YmiLc0WnRLOfzofb/r6spu5CVilyob07HWGhXq7Ht7dQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css}" integrity="sha512-Nep6azRFo4niNmQ/2gCnsDcS4IP3nF77+M3jNv9YwxZPGenftLY0V6KyRaqw4T4fjlpSeqAhCQQBgrOJ+rmB8g==" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css}" integrity="sha512-pK8UgvxxMzhXcXUsJeVp3z8GjD3oaIDCsiyf4SnCZk8yV7YEnaoE2Cl3YT9L92/9oe2vJJYSJUzlTraGIl/MNQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{../css/style.css}" />
+</head>
+
+<body>
+<div class="preloader">
+    <div class="layer"></div>
+    <div class="inner">
+        <figure><img th:src="@{../images/template/preloader.gif}" alt="Image"></figure>
+        <p>
+            <span class="text-rotater" data-text="AR House | Loading">Loading</span></p>
+    </div>
+</div>
+
+<div class="transition-overlay">
+    <div class="layer"></div>
+</div>
+
+<div class="side-navigation">
+    <div class="menu">
+        <ul>
+            <li><a th:href="@{/arhouse.arh}">ГЛАВНАЯ</a></li>
+            <li><a th:href="@{/arhouse.arh/request}">ЗАКАЗАТЬ ПРОЕКТ</a></li>
+            <li><a th:href="@{/arhouse.arh/preview}">ПРОСМОТР</a></li>
+            <li><a th:href="@{/arhouse.arh/projects}">НАШИ ПРОЕКТЫ</a></li>
+            <li><a th:href="@{/arhouse.arh/contact}">О НАС</a></li>
+        </ul>
+    </div>
+
+    <div class="side-content">
+        <figure>
+            <img th:src="@{../images/template/logo.png}" alt="Image">
+        </figure>
+        <p>Стремясь поднять качество жизни на более высокий уровень с помощью всех реализованных проектов,
+            ARHouse продолжает оставаться адресом роскоши.</p>
+        <ul class="gallery">
+            <li><a th:href="@{../images/template/gallery-thumb01.jpg}" data-fancybox>
+                <img th:src="@{../images/template/gallery-thumb01.jpg}" alt="Image"></a></li>
+            <li><a th:href="@{../images/template/gallery-thumb02.jpg}" data-fancybox>
+                <img th:src="@{../images/template/gallery-thumb02.jpg}" alt="Image"></a></li>
+            <li><a th:href="@{../images/template/gallery-thumb03.jpg}" data-fancybox>
+                <img th:src="@{../images/template/gallery-thumb03.jpg}" alt="Image"></a></li>
+        </ul>
+        <address>
+            Белгород, ул. Костюкова, 44<br>
+            Москва, ул. Ленина, 17
+        </address>
+        <h6>+7(982)298-59-73</h6>
+        <p><a href="#">andrei.99@yandex.ru</a></p>
+        <small>© 2021 ARHouse</small>
+    </div>
+</div>
+
+<nav class="navbar">
+    <div class="container">
+        <div class="upper-side">
+            <div class="logo">
+                <a th:href="@{/arhouse.arh}"><img th:src="@{../images/template/logo.png}" alt="Image"></a>
+            </div>
+
+            <div class="phone-email"> <img th:src="@{../images/template/icon-phone.png}" alt="Image">
+                <h4>+7(982)298-59-73</h4>
+                <small><a href="#">andrei.99@yandex.ru</a></small>
+            </div>
+
+            <div class="hamburger"> <span></span> <span></span> <span></span><span></span>
+            </div>
+        </div>
+
+        <div class="menu">
+            <ul>
+                <li><a th:href="@{/arhouse.arh}">ГЛАВНАЯ</a></li>
+                <li><a th:href="@{/arhouse.arh/request}">ЗАКАЗАТЬ ПРОЕКТ</a></li>
+                <li><a th:href="@{/arhouse.arh/preview}">ПРОСМОТР</a></li>
+                <li><a th:href="@{/arhouse.arh/projects}">НАШИ ПРОЕКТЫ</a></li>
+                <li><a th:href="@{/arhouse.arh/contact}">О НАС</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="page-header" data-stellar-background-ratio="1.15">
+    <div class="container">
+        <h1 style="color: #ebcfa7">Пользовательское соглашение</h1>
+        <p>Политика конфиденциальности персональной информации действует в отношении всей информации, получаемой ArHouse от Пользователя при использовании им информационной системы ArHouse®.</p>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/arhouse.arh}">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Калькулятор</li>
+        </ol>
+    </div>
+</header>
+
+<section class="faq">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="accordion" id="accordion" role="tablist">
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingOne"> <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Общие положения</a> </div>
+                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <ol>
+                                    <li>
+                                        ArHouse предлагает Пользователю сети Интернет использовать Сервис для получение 3D дизайна помещения, изложенных в настоящем Пользовательском соглашении (Далее – «Соглашение»).
+                                    </li>
+                                    <li>
+                                        Начиная использовать ArHouse или его отдельные функции, Пользователь считается принявшим условия Соглашения в полном объеме, без всяких оговорок и исключений. В случае несогласия Пользователя с какими-либо из положений Соглашения, Пользователь не вправе использовать ArHouse. В случае если Администрацией системы были внесены какие-либо изменения в Соглашение, в порядке, предусмотренном п 1.3, с которыми Пользователь не согласен, он обязан прекратить использование ArHouse.
+                                    </li>
+                                    <li>
+                                        Осуществляя доступ к ArHouse и заключая таким образом настоящее Пользовательское соглашение, Пользователь гарантирует, что обладает всеми правами и полномочиями, необходимыми для заключения и исполнения Пользовательского соглашения, в том числе является совершеннолетним лицом. Администрация системы вправе в любое время потребовать от Пользователя предоставление информации и документов, подтверждающих права и полномочия, как указано выше.
+                                    </li>
+                                    <li>
+                                        Пользовательское соглашение может быть изменено Администрацией системы в любое время без какого-либо специального уведомления об этом Пользователя. Новая редакция Пользовательского соглашения вступает в силу с момента ее размещения на ArHouse, если Администрацией сайта прямо не указано иное. Регулярное ознакомление с действующей редакцией Пользовательского соглашения является обязанностью Пользователя. Использование ArHouse после вступления в силу новой редакции Пользовательского соглашения означает согласие с ней Пользователя и применение к нему в полном объеме положений новой редакции.
+                                    </li>
+                                    <li>
+                                        Для того, чтобы воспользоваться ArHouse, Пользователю необходимо иметь компьютер и доступ в Интернет. Все вопросы приобретения прав доступа в Интернет, покупки и наладки соответствующего оборудования и программных продуктов решаются Пользователем самостоятельно и не подпадают под действие настоящего Соглашения.
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingTwo"> <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Работа с webVR</a> </div>
+                        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                <ol>
+                                    <li>
+                                        Шлем виртуальной реальности соединяется с ПК через специальный порт.
+                                    </li>
+                                    <li>
+                                        Во время этого процесса пользователь надевает шлем и производит движения головой: повороты направо-налево, наклоны и т.д.
+                                    </li>
+                                    <li>
+                                        Также у современных устройств в комплекте часто идут внешние камеры с инфракрасными датчиками движения. Это позволяет лучше контролировать перемещение головы человека в пространстве.
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingThree"> <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Руководство по использованию webVR</a> </div>
+                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body">
+                                Необходимые принадлежности:
+                                <ol>
+                                    <li>
+                                        Устройство с поддержкой VR.
+                                        <ol>
+                                            <li>
+                                                Самым дешёвым вариантом будет использовать мобильное устройство, какое-нибудь крепление (например, Google Cardboard) и подходящий браузер. Ощущения будут не такие яркие, как от специализированного устройства, но зато вам не понадобится приобретать мощный компьютер или отдельный VR дисплей.
+                                            </li>
+                                            <li>
+                                                Специализированное устройство может быть дорогим, но зато ощущения будут лучше. Наиболее WebVR-совместимые устройства на данный момент: HTC VIVE, The Oculus Rift. Дополнительную информацию о доступных устройствах и их поддержке браузерами можно найти на webvr.info
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li>
+                                        Компьютер с мощностью, достаточной для соответствующего рендеринга/отображения VR сцен, если вы всё-таки решите воспользоваться специализированным устройством. Чтобы получить некоторое представление о системных требованиях, поищите соответствующие руководства для VR платформы, которую вы думаете использовать. В качестве примера: VIVE READY Computers
+                                    </li>
+                                    <li>
+                                        Подходящий браузер. Последние версии Firefox Nightly и Chrome на данные момент являются лучшими вариантами, как для ПК, так и для мобильных устройств.
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingFour"> <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Рекомендации по безопасности</a> </div>
+                        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
+                            <div class="card-body">
+                                <ol>
+                                    <li>
+                                        Пожалуйста, используйте устройство в безопасной среде. «Пребывание в виртуальной реальности» в текущем времени оградит вас от реального мира. Обратите особое внимание на безопасность окружающей среды, есть опасность падения или ударения.
+                                    </li>
+                                    <li>
+                                        Использовать шлем необходимо в горизонтальном положении, при этом вы должны чувствовать себя комфортно. Убедитесь, что изображение на дисплее четкое и яркое.
+                                    </li>
+                                    <li>
+                                        Каждые 30 минут просмотра видео в шлеме рекомендуется выделять 10-15 минут для отдыха. У каждого человека разные особенности восприятия, поэтому если вы чувствуете себя плохо, регулируйте частоту и длительность использования шлема в соответствии с вашим самочувствием.
+                                    </li>
+                                    <li>
+                                        Если устройство слишком нагрелось, дайте шлему остыть, после чего можно снова приступать к его использованию.
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingFive"> <a class="collapsed" data-toggle="collapse" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Иные положения. Обратная связь. Вопросы и предложения</a> </div>
+                        <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFive" data-parent="#accordion">
+                            <div class="card-body">
+                                <ol>
+                                    <li>
+                                        Все предложения или вопросы по поводу настоящей Политики Пользователь вправе направлять в Службу поддержки пользователей ArHouse: <a href="#">andrei.99@yandex.ru</a>
+                                    </li>
+                                    <li>
+                                        Настоящее соглашение составлено на русском языке и предоставлено для ознакомления по адресу: <a th:href="@{/arhouse.arh/rules}">/arhouse.arh/rules</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+<!--                    <div class="card">-->
+<!--                        <div class="card-header" role="tab" id="headingSix"> <a class="collapsed" data-toggle="collapse" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix"> Where can I get information on private companies?</a> </div>-->
+<!--                        <div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingSix" data-parent="#accordion">-->
+<!--                            <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <aside class="sidebox">
+                    <i class="fa fa-question-circle"></i>
+                    <h5>Центр поддержки</h5>
+                    <h3>+7(982)298-59-73</h3>
+                    <p><a href="#">andrei.99@yandex.ru</a></p>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="footer-bar">
+    <div class="container">
+        <div class="inner wow fadeIn">
+            <div class="row">
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.05s">
+                    <figure>
+                        <img th:src="@{../images/template/footer-icon01.png}" alt="Image">
+                    </figure>
+                    <h3>Контактная информация</h3>
+                    <p>Белгород | ул. Костюкова, 44<br>Москва | ул. Ленина, 17</p>
+                </div>
+
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.10s">
+                    <figure>
+                        <img th:src="@{../images/template/footer-icon02.png}" alt="Image">
+                    </figure>
+                    <h3>Рабочее время</h3>
+                    <p>С ПН по Пт с <strong>09:00</strong> до <strong>18:30</strong><br>В СБ мы работаем до <strong>15:30</strong></p>
+                </div>
+
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.15s">
+                    <figure>
+                        <img th:src="@{../images/template/footer-icon03.png}" alt="Image">
+                    </figure>
+                    <h3>Офис продаж</h3>
+                    <p>Leroy Merlin<br>Москва, ул. Шаболовка, 31, стр. 1</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.05s">
+                <img th:src="@{../images/template/logo.png}" alt="Image" class="logo">
+                <p>Стремясь поднять качество жизни на более высокий уровень с помощью всех реализованных проектов,
+                    ARHouse продолжает оставаться адресом роскоши.</p>
+            </div>
+
+            <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.15s">
+                <ul class="footer-menu">
+                    <li><a th:href="@{/arhouse.arh/rules}">ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ</a></li>
+                    <li><a th:href="@{/arhouse.arh/authorization}">ДЛЯ РАБОТНИКОВ</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.25s">
+                <ul class="footer-menu">
+                    <li><a th:href="@{/arhouse.arh}">ГЛАВНАЯ</a></li>
+                    <li><a th:href="@{/arhouse.arh/request}">ЗАКАЗАТЬ ПРОЕКТ</a></li>
+                    <li><a th:href="@{/arhouse.arh/preview}">ПРОСМОТР</a></li>
+                    <li><a th:href="@{/arhouse.arh/projects}">НАШИ ПРОЕКТЫ</a></li>
+                    <li><a th:href="@{/arhouse.arh/contact}">О НАС</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.35s">
+                <div class="contact-box">
+                    <h5>Центр поддержки</h5>
+                    <h3>+7(982)298-59-73</h3>
+                    <p><a href="#">andrei.99@yandex.ru</a></p>
+                    <div class="footer-subscribe">
+                        <div class="subscribe-form">
+                            <form id="mc-form" class="group">
+                                <input type="email" value="" name="dEmail" class="email" id="mc-email" placeholder="@-mail" required="">
+                                <input type="submit" name="subscribe">
+                                <label for="mc-email" class="subscribe-message"></label>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <span class="copyright">© 2021 ARHouse</span>
+                <span class="creation">Site created by Andrew</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js}" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+<script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/js/swiper.min.js}" integrity="sha512-vKtlh10whXT2NhAshnxhceCdwq/bMyMrfeZ3p2IaF89qGCwbC94ATb7Qyg8cFs8EL3Hgz9bJBF++ZWfKn4ligg==" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js}" integrity="sha512-br+5V7meYazs+fixQjeb6e9czNwROtwV4swuqC35eEew1hqR4Ze4+osakG0UQsT3SkegXHtN/u5tdgeZOKaPsw==" crossorigin="anonymous"></script>
+<script th:src="@{https://atuin.ru/demo/wow/wow.min.js}"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js}" integrity="sha512-PNXCBnFH9wShbV+mYnrfo0Gf3iSREgBWmYAoMIfc+Z83vVq3Nu4yxBk6j+BZ40ZIhtW3WlTQdBvW3AYLAnlgpA==" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js}" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+<script th:src="@{../js/template/script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Панель админа [Добавление магазина]</title>
+
+    <link rel="stylesheet" th:href="@{../../css/styletabs.css}" />
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="menu">
+                <div class="abs edit_block">
+                    <a th:href="@{/arhouse.arh/admin#shops}" class="backmodeladm">НАЗАД</a>
+                    <a th:href="@{/arhouse.arh/admin#personnel}">ПЕРСОНАЛ</a>
+                    <a th:href="@{/arhouse.arh/admin#requests}">ЗАЯВКИ</a>
+                    <b><a th:href="@{/arhouse.arh/admin#shops}">МАГАЗИНЫ</a></b>
+                    <a th:href="@{/arhouse.arh/admin#reports}">ОТЧЁТЫ</a>
+                    <hr>
+                </div>
+
+                <form method="post" th:object="${add_shop}">
+                    <p style="padding-left: 5%">ДОБАВЛЕНИЕ МАГАЗИНА</p><br>
+                    <div class="edit_form_work">
+                        <div class="field">
+                            <label for="name">Название:</label>
+                            <input type="text" th:field="*{nameShop}" id="name" placeholder="Введите название магазины" autocomplete="off" />
+                        </div>
+                        <div class="alert-haserror-shop" th:if="${#fields.hasErrors('nameShop')}" th:errors="*{nameShop}">
+                            ERROR
+                        </div>
+
+                        <div class="field">
+                            <label for="shop">Оргнизация:</label>
+                            <select class="custom-select" th:field="*{organizationsModel}" id="shop">
+                                <option th:each="organization : ${organizations_item}"
+                                        th:value="${organization.getId()}"
+                                        th:text="${organization.getNameOrganization()}"></option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="address">Адрес магазина:</label>
+                            <input type="text" th:field="*{address}" id="address" placeholder="Введите адрес" autocomplete="off" />
+                        </div>
+                        <div class="alert-haserror-shop" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">
+                            ERROR
+                        </div>
+
+                        <div class="field">
+                            <label for="telephone">Телефон:</label>
+                            <input type="text" th:field="*{telephone}" id="telephone" placeholder="+7(___)___-__-__" autocomplete="off" required />
+                        </div>
+                        <div class="field inline">
+                            <label>
+                                <button class="btn btn-secondary" type="submit">Сохранить</button>
+                            </label>
+                            <div class="field inline">
+                                <label>
+                                    <a th:href="@{/arhouse.arh/admin#shops}">
+                                        <input type="button" class="btn btn-secondary btn-href" value="Отмена"/>
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js}" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+<script th:src="@{https://silverweb.by/wp-content/themes/consultix/js/jquery.maskedinput.min.js}"></script>
+<script>
+    $(document).ready(function() {
+        $("#telephone").mask("+7(999)999-99-99");
+    });
+</script>
+</html>

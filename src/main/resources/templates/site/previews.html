@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>[Ar House]Предварительный просмотр</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.1/animate.min.css}" integrity="sha512-E5hbw9GiuYofTcrbba1gAU64dn/54A9nmk4IEMzmp+YmiLc0WnRLOfzofb/r6spu5CVilyob07HWGhXq7Ht7dQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css}" integrity="sha512-pK8UgvxxMzhXcXUsJeVp3z8GjD3oaIDCsiyf4SnCZk8yV7YEnaoE2Cl3YT9L92/9oe2vJJYSJUzlTraGIl/MNQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{../../css/style.css}" />
+</head>
+
+<body style="overflow-y:hidden">
+<div class="preloader">
+    <div class="layer"></div>
+    <div class="inner">
+        <figure><img th:src="@{../../images/template/preloader.gif}" alt="Image"></figure>
+        <p>
+            <span class="text-rotater" data-text="AR House | Loading">Loading</span></p>
+    </div>
+</div>
+
+<div class="transition-overlay">
+    <div class="layer"></div>
+</div>
+
+<div class="side-navigation">
+    <div class="side-content">
+        <figure>
+            <img th:src="@{../../images/template/logo.png}" alt="Image">
+        </figure>
+
+        <div class="menu-side">
+            <ul>
+                <li><a th:href="@{/arhouse.arh}">ГЛАВНАЯ</a></li>
+                <li><a th:href="@{/arhouse.arh/request}">ЗАКАЗАТЬ ПРОЕКТ</a></li>
+                <li><a th:href="@{/arhouse.arh/preview}">ПРОСМОТР</a></li>
+                <li><a th:href="@{/arhouse.arh/projects}">НАШИ ПРОЕКТЫ</a></li>
+                <li><a th:href="@{/arhouse.arh/contact}">О НАС</a></li>
+            </ul>
+        </div>
+
+        <div class="swap-preview" th:if="${requests_item.pathToModel != null}">
+            <form method="get" th:action="@{/arhouse.arh/previewsvr/{id}(id = ${requests_item.getRequestsModel().getToken()})}">
+                <button type="submit" class="btn btn-secondary">Просмотр в VR</button>
+            </form>
+        </div>
+
+        <div>
+            <h6>+7(982)298-59-73</h6>
+            <p><a href="#">andrei.99@yandex.ru</a></p>
+            <small>© 2021 ARHouse</small>
+        </div>
+    </div>
+    <div class="hidden-block">
+        <p id="data-request-id" th:text="*{requests_item.getRequestsModel().id}"></p>
+        <p id="data-request-nameproject" th:text="*{requests_item.getRequestsModel().nameProject}"></p>
+        <p id="data-request-pathproject" th:text="*{requests_item.pathToModel}"></p>
+    </div>
+</div>
+
+<nav class="navbar" style="width: 80%;">
+    <div class="container">
+        <div class="upper-side">
+            <div class="logo"></div>
+            <div class="phone-email"></div>
+
+            <div class="hamburger"> <span></span> <span></span> <span></span><span></span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="view-preview">
+    <div class="preview" id="follower">
+        <div class="not-active">
+            <div class="page-status">
+                <div class="container">
+                    <p style="font-weight:bold;font-size:25px;">Модель ещё на стадии разработки</p>
+                    <div class="swap-preview">
+                        <form method="get" th:action="@{/arhouse.arh}">
+                            <button type="submit" class="btn btn-secondary">Вернуться на главную</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js}" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+<script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/js/swiper.min.js}" integrity="sha512-vKtlh10whXT2NhAshnxhceCdwq/bMyMrfeZ3p2IaF89qGCwbC94ATb7Qyg8cFs8EL3Hgz9bJBF++ZWfKn4ligg==" crossorigin="anonymous"></script>
+<script th:src="@{https://atuin.ru/demo/wow/wow.min.js}"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js}" integrity="sha512-PNXCBnFH9wShbV+mYnrfo0Gf3iSREgBWmYAoMIfc+Z83vVq3Nu4yxBk6j+BZ40ZIhtW3WlTQdBvW3AYLAnlgpA==" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js}" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+<script th:src="@{../../js/template/script.js}"></script>
+
+<script th:src="@{../../js/3d_mode/three.min.js}"></script>
+<script th:src="@{../../js/3d_mode/objloader.js}"></script>
+<script th:src="@{../../js/3d_mode/mtlloader.js}"></script>
+<script th:src="@{../../js/3d_mode/orbitcontrols.js}"></script>
+<script th:src="@{../../js/3d_mode/dat.gui.min.js}"></script>
+<script th:src="@{../../js/3d_mode/main.js}"></script>
+</body>
+</html>

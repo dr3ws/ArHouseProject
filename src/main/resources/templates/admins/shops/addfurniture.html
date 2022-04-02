@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Панель админа [Добавление мебели]</title>
+
+    <link rel="stylesheet" th:href="@{../../css/styletabs.css}" />
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="menu">
+                <div class="abs edit_block">
+                    <a th:href="@{/arhouse.arh/admin#shopsfurniture}" class="backmodeladm">НАЗАД</a>
+                    <a th:href="@{/arhouse.arh/admin#personnel}">ПЕРСОНАЛ</a>
+                    <a th:href="@{/arhouse.arh/admin#requests}">ЗАЯВКИ</a>
+                    <b><a th:href="@{/arhouse.arh/admin#shops}">МАГАЗИНЫ</a></b>
+                    <a th:href="@{/arhouse.arh/admin#reports}">ОТЧЁТЫ</a>
+                    <hr>
+                </div>
+
+                <form method="post" th:object="${add_furniture}" enctype="multipart/form-data">
+                    <p style="padding-left: 5%">ДОБАВЛЕНИЕ НОВОЙ МЕБЕЛИ</p><br>
+                    <div class="edit_form_work">
+                        <div class="field">
+                            <label for="name">Название:</label>
+                            <input type="text" th:field="*{furnituresModel.nameFurniture}" id="name" placeholder="Введите название мебели" autocomplete="off" required />
+                        </div>
+                        <div class="field">
+                            <label for="articul">Артикул:</label>
+                            <input type="text" th:field="*{furnituresModel.articul}" id="articul" placeholder="Введите Артикул мебели" autocomplete="off" required />
+                        </div>
+
+                        <div class="field">
+                            <label for="price">Цена:</label>
+                            <input type="text" th:field="*{price}" id="price" placeholder="Введите цену" autocomplete="off" />
+                        </div>
+                        <div class="alert-haserror-furn" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">
+                            ERROR
+                        </div>
+
+                        <div class="field">
+                            <label for="count">Количество:</label>
+                            <input type="text" th:field="*{count}" id="count" placeholder="Введите количество" autocomplete="off" />
+                        </div>
+                        <div class="alert-haserror-furn" th:if="${#fields.hasErrors('count')}" th:errors="*{count}">
+                            ERROR
+                        </div>
+
+                        <div class="field">
+                            <label for="shop">Магазин:</label>
+                            <select class="custom-select" th:field="*{shopsModel}" id="shop">
+                                <option th:each="shop : ${shops_item}"
+                                        th:value="${shop.getId()}"
+                                        th:text="${shop.getNameShop()}"></option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="catigory1">Категория:</label>
+                            <select class="custom-select" id="catigory1">
+                                <option th:value="Жилая">Жилая</option>
+                                <option th:value="Кухонная">Кухонная</option>
+                                <option th:value="Прихожая">Прихожая</option>
+                                <option th:value="Ванная">Ванная</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <!--th:if="${catigory.parentcategories == 'Жилая'}"-->
+                            <label for="catigory2">Вид:</label>
+                            <select class="custom-select" id="catigory2"
+                                    th:field="*{furnituresModel.categoriesModel}">
+                                <option th:each="catigory : ${catigories_item}"
+                                        th:value="${catigory.id}"
+                                        th:text="${catigory.getCategories()}"></option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="model">3D модель:</label>
+                            <input type="file" name="file" id="model">
+                        </div>
+                        <div class="field inline">
+                            <label>
+                                <button class="btn btn-secondary" type="submit">Сохранить</button>
+                            </label>
+                            <div class="field inline">
+                                <label>
+                                    <a th:href="@{/arhouse.arh/admin/addfurniture/uploaddata}">
+                                        <input type="button" class="btn btn-secondary btn-href" value="Загрузить из файла"/>
+                                    </a>
+                                </label>
+                            </div>
+                            <div class="field inline">
+                                <label>
+                                    <a th:href="@{/arhouse.arh/admin#shops}">
+                                        <input type="button" class="btn btn-secondary btn-href" value="Отмена"/>
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script type="text/javascript">
+    // let select_value = document.getElementById("cat1");
+    // let kavichka = "\'";
+    // console.log(select_value.value);
+    //
+    // let addElement = document.getElementById("cat2");
+    // let addCode = "<option th:each='catigories : ${catigories_item}' th:value='${catigories.id}' th:text='${catigories.getCategories()}'></option>";
+    // addElement.insertAdjacentHTML('afterbegin', addCode);
+    //
+    // function changeselect() {
+    //     select_value = document.getElementById("cat1");
+    //     console.log(select_value.value);
+    //
+    //     let addElement = document.getElementById("cat2");
+    //     let addCode = "<option th:each='catigories : ${catigories_item}' th:value='${catigories.id}' th:text='${catigories.getCategories()}'></option>";
+    //     addElement.insertAdjacentHTML('afterbegin', addCode);
+    // }
+</script>
+
+</body>
+</html>

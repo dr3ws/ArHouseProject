@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Панель модельера</title>
+
+    <link rel="stylesheet" th:href="@{../../css/styletabs.css}" />
+    <style>
+        li {list-style-type: none}
+    </style>
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="menu">
+                <div id="all_requests" class="abs block">
+                    <a href="#view_window" class="model">ПАНЕЛЬ МОДЕЛЬЕРА</a>
+                    <a href="#new_requests">НОВЫЕ ЗАЯВКИ</a>
+                    <a href="#process_requests">В ПРОЦЕССЕ</a>
+                    <a href="#completed_requests">ЗАВЕРШЁННЫЕ ЗАЯВКИ</a>
+                    <b><a href="#all_requests">ВСЕ ЗАЯВКИ</a></b>
+                    <br> <hr> <br>
+                    <table class="allrequest">
+                        <tr>
+                            <th class="col1">Имя</th>
+                            <th class="col1">Фамилия</th>
+                            <th class="col2">Адрес<br>электронной почты</th>
+                            <th class="col1">Адрес</th>
+                            <th class="col1">Дата</th>
+                            <th class="col1">Название<br>проекта</th>
+                            <th class="col2">Статус</th>
+                        </tr>
+                        <tr th:each="request : ${requests}">
+                            <td th:text="${request.getFirstName()}">VALUE</td>
+                            <td th:text="${request.getSecondName()}">VALUE</td>
+                            <td th:text="${request.getEmail()}">VALUE</td>
+                            <td th:text="${request.getAddress()}">VALUE</td>
+                            <td th:text="${request.getDate()}">VALUE</td>
+                            <td th:text="${request.getNameProject()}">VALUE</td>
+                            <td><p th:text="${request.getStatusModel().status}">VALUE</p>
+<!--                                <p>/</p>-->
+<!--                                <p th:text="${models_item.getStatusModel().status}">VALUE</p>-->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="completed_requests" class="abs block">
+                    <a href="#view_window" class="model">ПАНЕЛЬ МОДЕЛЬЕРА</a>
+                    <a href="#new_requests">НОВЫЕ ЗАЯВКИ</a>
+                    <a href="#process_requests">В ПРОЦЕССЕ</a>
+                    <b><a href="#completed_requests">ЗАВЕРШЁННЫЕ ЗАЯВКИ</a></b>
+                    <a href="#all_requests">ВСЕ ЗАЯВКИ</a>
+                    <br> <hr> <br>
+                    <table class="completedrequest">
+                        <tr>
+                            <th class="col1">Имя</th>
+                            <th class="col1">Фамилия</th>
+                            <th class="col2">Адрес<br>электронной почты</th>
+                            <th class="col1">Адрес</th>
+                            <th class="col1">Дата</th>
+                            <th class="col1">Название<br>проекта</th>
+                        </tr>
+                        <tr th:each="request : ${models4mod}">
+                            <td th:text="${request.getFirstName()}">VALUE</td>
+                            <td th:text="${request.getSecondName()}">VALUE</td>
+                            <td th:text="${request.getEmail()}">VALUE</td>
+                            <td th:text="${request.getAddress()}">VALUE</td>
+                            <td th:text="${request.getDate()}">VALUE</td>
+                            <td th:text="${request.getNameProject()}">VALUE</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="process_requests" class="abs block">
+                    <a href="#view_window" class="model">ПАНЕЛЬ МОДЕЛЬЕРА</a>
+                    <a href="#new_requests">НОВЫЕ ЗАЯВКИ</a>
+                    <b><a href="#process_requests">В ПРОЦЕССЕ</a></b>
+                    <a href="#completed_requests">ЗАВЕРШЁННЫЕ ЗАЯВКИ</a>
+                    <a href="#all_requests">ВСЕ ЗАЯВКИ</a>
+                    <br> <hr> <br>
+                    <table>
+                        <tr>
+                            <th class="col1">Имя</th>
+                            <th class="col1">Фамилия</th>
+                            <th class="col1-5">Адрес<br>электронной почты</th>
+                            <th class="col1">Адрес</th>
+                            <th class="col1">Дата</th>
+                            <th class="col1">Название<br>проекта</th>
+                            <th class="col1-5">Действие</th>
+                        </tr>
+                        <tr th:each="request : ${models3mod}">
+                            <td th:text="${request.getFirstName()}">VALUE</td>
+                            <td th:text="${request.getSecondName()}">VALUE</td>
+                            <td th:text="${request.getEmail()}">VALUE</td>
+                            <td th:text="${request.getAddress()}">VALUE</td>
+                            <td th:text="${request.getDate()}">VALUE</td>
+                            <td th:text="${request.getNameProject()}">VALUE</td>
+                            <td class="action">
+                                <form class="inline" method="get" th:action="@{/arhouse.arh/modeler/uploadrequest/{id}(id = ${request.getId()})}">
+                                    <button type="submit" class="btn btn-secondary">Обновить</button>
+                                </form>
+                                <form class="inline" method="post" th:object="${request_post_mod}" th:action="@{/arhouse.arh/modeler/{id}(id = ${request.getId()})}">
+                                    <button type="submit" class="btn btn-secondary">Завершить</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="new_requests" class="abs block">
+                    <a href="#view_window" class="model">ПАНЕЛЬ МОДЕЛЬЕРА</a>
+                    <b><a href="#new_requests">НОВЫЕ ЗАЯВКИ</a></b>
+                    <a href="#process_requests">В ПРОЦЕССЕ</a>
+                    <a href="#completed_requests">ЗАВЕРШЁННЫЕ ЗАЯВКИ</a>
+                    <a href="#all_requests">ВСЕ ЗАЯВКИ</a>
+                    <br> <hr> <br>
+                    <table>
+                        <tr>
+                            <th class="col1">Имя</th>
+                            <th class="col1">Фамилия</th>
+                            <th class="col2">Адрес<br>электронной почты</th>
+                            <th class="col1">Адрес</th>
+                            <th class="col1">Дата</th>
+                            <th class="col1">Название<br>проекта</th>
+                            <th class="col1">Действие</th>
+                        </tr>
+                        <tr th:each="request : ${requests}" th:if="${request.getStatusModel().id == 0 && request.techTask == true}">
+                            <td th:text="${request.getFirstName()}">VALUE</td>
+                            <td th:text="${request.getSecondName()}">VALUE</td>
+                            <td th:text="${request.getEmail()}">VALUE</td>
+                            <td th:text="${request.getAddress()}">VALUE</td>
+                            <td th:text="${request.getDate()}">VALUE</td>
+                            <td th:text="${request.getNameProject()}">VALUE</td>
+                            <td class="action">
+                                <form method="post" th:object="${request_post_mod}"
+                                      th:action="@{/arhouse.arh/modeler/{id}(id = ${request.getId()})}">
+                                    <button type="submit" class="btn btn-secondary">Принять</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="view_window_edit">
+                    <div id="window_edit">
+                        <form class="inline form-gear" method="get" th:action="@{#view_window}">
+                            <button type="submit" class="gear-button"> <img th:src="@{../images/template/gear_fill_icon.png}" class="img-gear" alt="Image"></button>
+                        </form>
+
+                        <form class="inline form-window" method="post" th:action="@{/arhouse.arh/modeler/editme/{id}(id = ${modeler_session.getId()})}">
+                            <p style="padding-left: 5%">Изменение перональных данных</p><br>
+                            <div>
+                                <div class="edit_form_work">
+                                    <div class="field">
+                                        <label for="first_name">Имя:</label>
+                                        <input class="input-window" type="text" th:field="*{modeler_session.firstName}" id="first_name" autocomplete="off" required />
+                                    </div>
+                                    <div class="field">
+                                        <label for="second_name">Фамилия:</label>
+                                        <input class="input-window" type="text" th:field="*{modeler_session.secondName}" id="second_name" autocomplete="off" required />
+                                    </div>
+                                    <div class="hidden-block">
+                                        <label for="role"></label>
+                                        <input type="text" th:field="*{modeler_session.roles.id}" id="role" autocomplete="off" readonly />
+                                    </div>
+                                    <div class="field">
+                                        <label for="login">Логин авторизации:</label>
+                                        <input class="input-window" type="text" th:field="*{modeler_session.username}" id="login" autocomplete="off" required />
+                                    </div>
+                                    <div class="field">
+                                        <label for="password">Пароль авторизации:</label>
+                                        <input class="input-window" type="text" th:field="*{modeler_session.password}" id="password" autocomplete="off" required />
+                                    </div>
+                                    <div class="field">
+                                        <label><button class="btn btn-secondary" type="submit">Сохранить</button></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="view_window">
+                    <div id="window">
+                        <p style="padding-left:5%">Текущая сессия:</p><br>
+                        <ul style="padding-left:15%">
+                            <li><p>Имя:&nbsp;</p><p th:text="*{modeler_session.firstName}"></p></li>
+                            <li><p>Фамилия:&nbsp;</p><p th:text="*{modeler_session.secondName}"></p></li>
+                        </ul>
+
+                        <form class="inline form-gear" method="get" th:action="@{#view_window_edit}">
+                            <button type="submit" class="gear-button"> <img th:src="@{../images/template/gear_fill_icon.png}" class="img-gear" alt="Image"></button>
+                        </form>
+
+                        <form class="inline form-close" method="get" th:action="@{#}">
+                            <button type="submit" class="btn btn-secondary">Закрыть</button>
+                        </form>
+                        <form class="inline form-logout" method="post" th:action="@{/logout}">
+                            <button type="submit" class="btn btn-secondary">Выход</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+</html>

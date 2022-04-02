@@ -1,0 +1,609 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.offud {
+  -moz-appearance: textfield;
+}
+.offud::-webkit-inner-spin-button {
+  display: none;
+}
+
+.container {
+  width: 100%;
+}
+
+.abs {
+  position: absolute;
+}
+
+.block {
+  position: relative;
+  display: none;
+  width: 100%;
+}
+
+.edit_block {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.btn-href {
+  width: auto;
+  height: 38px;
+}
+
+a {
+  text-decoration: none;
+  color: #222;
+  padding: 0 2% 0 2%;
+  margin: 0 auto;
+}
+a.admin {
+  text-decoration: none;
+  color: #222;
+  padding-right: 40%;
+  margin: 0 auto;
+}
+a.model {
+  text-decoration: none;
+  color: #222;
+  padding-right: 25%;
+  margin: 0 auto;
+}
+a.backmodel {
+  text-decoration: none;
+  color: #222;
+  padding-right: 34%;
+  margin: 0 auto;
+}
+a.backmodeladm {
+  text-decoration: none;
+  color: #222;
+  padding-right: 52%;
+  margin: 0 auto;
+}
+
+a:hover {
+  color: #dc3545;
+  text-decoration: none;
+}
+a.admin:hover {
+  color: #dc3545;
+  text-decoration: none;
+}
+a.model:hover {
+  color: #dc3545;
+  text-decoration: none;
+}
+a.backmodel:hover {
+  color: #dc3545;
+  text-decoration: none;
+}
+a.backmodeladm:hover {
+  color: #dc3545;
+  text-decoration: none;
+}
+
+a:visited {
+  font-weight: bold;
+}
+
+p {
+  font-size: 20px;
+  display: inline-block;
+}
+
+/*======================================================= АДМИН ======================================================*/
+
+.editreq {
+  width: 130px;
+  margin-right: 340px;
+}
+
+#personnel {
+  display: block;
+  margin-top: 8px;
+}
+
+div:target {
+  display: block;
+}
+
+div[id*=shops]:target {
+  display: block;
+}
+
+div[id*=shops]:target ~ #shops {
+  display: block;
+}
+
+div[id*=shops]:target ~ #personnel {
+  display: none;
+}
+
+div[id*=shopsfurniture]:target ~ #shops {
+  display: none;
+}
+
+div[id*=t]:target ~ #personnel {
+  display: none;
+}
+
+.treeline {
+  margin-left: 3%;
+}
+.treeline .drop {
+  position: absolute;
+  width: 30%;
+  cursor: pointer;
+  color: transparent;
+  -webkit-user-select: none;
+}
+.treeline li:last-child > .drop {
+  margin-left: 1px;
+}
+.treeline .drop + ul {
+  display: none;
+}
+.treeline .dropM + ul {display: block;
+}
+.treeline, .treeline ul, .treeline li {
+  line-height: 1.2;
+  list-style: none;
+  padding-inline-start: 5px;
+}
+.treeline ul {margin: 0 0 0 15px;} /* отступ вертикальной линии */
+.treeline > li:not(:only-child), .treeline li li {
+  position: relative;
+  padding: 3px 0 0 20px; /* отступ текста */
+}
+.treeline li:not(:last-child) { border-left: 1px solid #ccc;
+}/* Стиль вертикальной линии */
+.treeline li li:before, .treeline > li:not(:only-child):before {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 1.1em; height: .7em; border-bottom:1px solid #ccc;
+}/* Стили горизонтальной линии*/
+.treeline li:last-child:before {
+  width: calc(1.1em - 1px); border-left: 1px solid #ccc;
+}/* Вертикальная линия последнего пункта в списка */
+
+/*===================================================== РАБОТНИКИ ====================================================*/
+
+#new_requests {
+  display: block;
+  margin-top: 8px;
+}
+
+div:target {
+  display: block;
+}
+
+div[id*=completed_requests]:target {
+  display: block;
+}
+
+div[id*=completed_requests]:target ~ #completed_requests {
+  display: block;
+}
+
+div[id*=t]:target ~ #new_requests {
+  display: none;
+}
+
+/*===================================================== ДЛЯ ВСЕХ =====================================================*/
+
+.alert-haserror-personnel {
+  display: block;
+  padding-left: 28%;
+  font-size: 14px;
+  color: red;
+}
+.alert-haserror-request {
+  display: block;
+  padding-left: 30.5%;
+  font-size: 14px;
+  color: red;
+}
+.alert-haserror-addorg {
+  display: block;
+  padding-left: 26%;
+  width: 500px;
+  font-size: 14px;
+  color: red;
+}
+.alert-haserror-shop {
+  display: block;
+  padding-left: 22%;
+  font-size: 14px;
+  color: red;
+}
+.alert-haserror-furn {
+  display: block;
+  padding-left: 18%;
+  font-size: 14px;
+  color: red;
+}
+
+#view_window {
+  background: rgba(102, 102, 102, 0.5);
+  backdrop-filter: blur(3px);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+#view_window_edit {
+  background: rgba(102, 102, 102, 0.5);
+  backdrop-filter: blur(3px);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+#window {
+  width: 50%;
+  height: 50%;
+  padding: 1%;
+  border: 1px solid #4e4e4e;
+  border-radius: 7px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.8);
+}
+#window_edit {
+  width: 50%;
+  height: 50%;
+  padding: 1%;
+  border: 1px solid #4e4e4e;
+  border-radius: 7px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.8);
+}
+#view_window:target {
+  display: block;
+}
+#view_window_edit:target {
+  display: block;
+}
+
+.form-window {
+  width: 100%;
+}
+.input-window {
+  height: 25px;
+  width: 400px;
+}
+
+.form-gear {
+  width: 38px;
+  height: 38px;
+  position: fixed;
+  right: 25%;
+  top: 25%;
+}
+.form-close {
+  position: fixed;
+  top: 69%;
+  left: 61%;
+}
+.form-logout {
+  position: fixed;
+  top: 69%;
+  left: 69%;
+}
+.gear-button {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+}
+.img-gear {
+  height: 100%;
+}
+
+table {
+  width: 100%;
+  padding-top: 10px;
+}
+th {
+  text-align: center;
+  font-size: 20px;
+  font-weight: normal;
+  background: #c7c7c7;
+  border-top: 2px solid #969696;
+  border-left: 2px solid #969696;
+  border-bottom: 1px solid white;
+  color: #000;
+  padding: 10px 5px 10px 5px;
+}
+th.col0-5 {
+  width: 5%;
+}
+th.col1 {
+  width: 10%;
+}
+th.col1-2 {
+  width: 12%;
+}
+th.col1-5 {
+  width: 15%;
+}
+th.col2 {
+  width: 20%;
+}
+th.col3 {
+  width: 30%;
+}
+th.col5 {
+  width: 50%;
+}
+td {
+  background: #f1f1f1;
+  border-bottom: 1px solid white;
+  color: #505050;
+  border-top: 1px solid transparent;
+  padding: 5px 10px 5px 10px;
+}
+
+.readyreport td {
+  background: #f1f1f1;
+  border-bottom: 1px solid white;
+  color: #505050;
+  border-top: 1px solid transparent;
+  padding: 15px 10px 15px 10px;
+}
+.completedrequest td {
+  background: #f1f1f1;
+  border-bottom: 1px solid white;
+  color: #505050;
+  border-top: 1px solid transparent;
+  padding: 15px 10px 15px 10px;
+}
+.allrequest td {
+  background: #f1f1f1;
+  border-bottom: 1px solid white;
+  color: #505050;
+  border-top: 1px solid transparent;
+  padding: 15px 10px 15px 10px;
+}
+.allrequest p {
+  font-size: 16px;
+  display: inline-block;
+  margin: 0;
+}
+
+td.action {
+  text-align: center;
+}
+td.action-shop {
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+}
+tr:hover td {
+  background: #e4e4e4;
+}
+
+.inline {
+  display: inline-block;
+}
+form.inline {
+  display: inline-block;
+}
+.edit_form_work {
+  float:left;
+  padding-left: 10%;
+}
+.edit_form {
+  width: 100%;
+  float: left;
+}
+.form-group-left {
+  float: left;
+  padding-left: 10%;
+}
+.field {
+  clear: both;
+  text-align: right;
+  line-height: 50px
+}
+.hidden-block {
+  display: none;
+}
+.hidden-input {
+  border: none;
+  outline: none;
+}
+label {
+  float:left;
+  padding-right:10px;
+}
+input {
+  height: 25px;
+  width: 480px;
+}
+input[type=date] {
+  font-family: "Poppins", sans-serif;
+}
+input[type=checkbox].checkbox-path {
+  width: 100%;
+  height: 19px;
+  margin: auto;;
+}
+select.custom-select {
+  height: 31px;
+  width: 488px;
+}
+
+.block-href > a {
+  font-size: 14px;
+  position: absolute;
+  right: 37.5%;
+  color: #929292;
+  text-decoration: none;
+  -webkit-user-select: none;
+}
+.block-href > a:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+.block-href > p {
+  font-size: 14px;
+  position: absolute;
+  right: 37.5%;
+  color: #929292;
+  padding: 0 2% 0 2%;
+  margin: 0 auto;
+  -webkit-user-select: none;
+}
+
+label.label-checkbox {
+  width: 100%;
+}
+
+::-webkit-scrollbar-button {
+  background-repeat: no-repeat;
+  width: 4px;
+  height: 0;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #aeaeae;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #222226;
+}
+
+::-webkit-resizer {
+  background-repeat:no-repeat;
+  width: 4px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* =================================================== BOOTSTRAP ==================================================== */
+
+.btn {
+  display:inline-block;
+  font-weight:400;text-align:center;
+  white-space:nowrap;vertical-align:middle;
+  -webkit-user-select:none;-moz-user-select:none;
+  -ms-user-select:none;user-select:none;
+  border:1px solid transparent;
+  padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;
+  transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out
+}
+.btn:focus,.btn:hover {
+  text-decoration:none
+}
+.btn.focus,.btn:focus {
+  outline:0;box-shadow:0 0 0 .2rem rgba(0,123,255,.25)
+}
+.btn.disabled,.btn:disabled {
+  opacity:.65
+}
+.btn:not(:disabled):not(.disabled) {
+  cursor:pointer
+}
+.btn:not(:disabled):not(.disabled).active,.btn:not(:disabled):not(.disabled):active {
+  background-image:none
+}
+a.btn.disabled,fieldset:disabled a.btn {
+  pointer-events:none
+}
+.btn-primary {
+  color:#fff;background-color:#007bff;border-color:#007bff
+}
+.btn-secondary {
+  color:#fff;background-color:#6c757d;border-color:#6c757d
+}
+.btn-secondary:hover {
+  color:#fff;background-color:#5a6268;border-color:#545b62
+}
+.btn-secondary.focus,.btn-secondary:focus {
+  box-shadow:0 0 0 .2rem rgba(108,117,125,.5)
+}
+.btn-secondary.disabled,.btn-secondary:disabled {
+  color:#fff;
+  background-color:#6c757d;
+  border-color:#6c757d
+}
+.btn-secondary:not(:disabled):not(.disabled).active,.btn-secondary:not(:disabled):not(.disabled):active,
+.show>.btn-secondary.dropdown-toggle {
+  color:#fff;
+  background-color:#545b62;
+  border-color:#4e555b;
+}
+.btn-secondary:not(:disabled):not(.disabled).active:focus,.btn-secondary:not(:disabled):not(.disabled):active:focus,
+.show>.btn-secondary.dropdown-toggle:focus {
+  box-shadow:0 0 0 .2rem rgba(108,117,125,.5)
+}
+
+.input-group {
+  width:auto;
+  position:relative;display:-webkit-box;
+  display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;
+  -webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch;
+}
+
+.input-group>.custom-select {
+  position:relative;-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;width:1%;margin-bottom:0
+}
+
+.input-group>.custom-select:focus {
+  z-index:3
+}
+
+.input-group-append>.btn {
+  padding:.25rem .5rem;
+  font-size:.875rem;line-height:1.5;
+  border-radius:.2rem
+}
+
+.input-group-append {
+  display:-webkit-box;display:-ms-flexbox;display:flex
+}
+
+.input-group-append .btn {
+  position:relative;z-index:2
+}
+
+.input-group-append .btn+.btn,.input-group-append .btn+.input-group-text,.input-group-append .input-group-text+.btn,
+.input-group-append .input-group-text+.input-group-text,.input-group-prepend .btn+.btn,.input-group-prepend .btn+.input-group-text,
+.input-group-prepend .input-group-text+.btn,.input-group-prepend .input-group-text+.input-group-text {
+  margin-left:-1px
+}
+
+.input-group>.input-group-append:last-child>.btn:not(:last-child):not(.dropdown-toggle),
+.input-group>.input-group-append:last-child>.input-group-text:not(:last-child),.input-group>.input-group-append:not(:last-child)>.btn,
+.input-group>.input-group-append:not(:last-child)>.input-group-text,.input-group>.input-group-prepend>.btn,
+.input-group>.input-group-prepend>.input-group-text {
+  border-top-right-radius:0;border-bottom-right-radius:0
+}
+.input-group>.input-group-append>.btn,.input-group>.input-group-append>.input-group-text,
+.input-group>.input-group-prepend:first-child>.btn:not(:first-child),.input-group>.input-group-prepend:first-child>.input-group-text:not(:first-child),
+.input-group>.input-group-prepend:not(:first-child)>.btn,.input-group>.input-group-prepend:not(:first-child)>.input-group-text {
+  border-top-left-radius:0;border-bottom-left-radius:0
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Панель админа [Редактирование мебели]</title>
+
+    <link rel="stylesheet" th:href="@{../../../css/styletabs.css}" />
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="menu">
+                <div class="abs edit_block">
+                    <a th:href="@{/arhouse.arh/admin#shopsfurniture}" class="backmodeladm">НАЗАД</a>
+                    <a th:href="@{/arhouse.arh/admin#personnel}">ПЕРСОНАЛ</a>
+                    <a th:href="@{/arhouse.arh/admin#requests}">ЗАЯВКИ</a>
+                    <b><a th:href="@{/arhouse.arh/admin#shops}">МАГАЗИНЫ</a></b>
+                    <a th:href="@{/arhouse.arh/admin#reports}">ОТЧЁТЫ</a>
+                    <hr>
+                </div>
+
+                <form method="post" th:object="${edit_furniture}" enctype="multipart/form-data">
+                    <p style="padding-left: 5%">РЕДАКТИРОВАНИЕ МЕБЕЛИ</p><br>
+                    <div class="hidden-block">
+                        <label for="id">Название:</label>
+                        <input type="text" th:field="*{furnituresModel.id}" id="id" readonly />
+                        <label for="artikul"></label>
+                        <input type="text" id="artikul" th:field="*{furnituresModel.articul}" readonly />
+                    </div>
+
+                    <div class="edit_form_work">
+                        <div class="field">
+                            <label for="name">Название:</label>
+                            <input type="text" th:field="*{furnituresModel.nameFurniture}" id="name" placeholder="Введите название мебели" autocomplete="off" />
+                        </div>
+                        <div class="field">
+                            <label for="articul">Артикул:</label>
+                            <input type="text" th:field="*{furnituresModel.articul}" id="articul" placeholder="Введите Артикул мебели" autocomplete="off" />
+                        </div>
+                        <div class="field">
+                            <label for="price">Цена:</label>
+                            <input type="text" th:field="*{price}" id="price" placeholder="Введите цену" autocomplete="off" />
+                        </div>
+                        <div class="alert-haserror-furn" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">
+                            ERROR
+                        </div>
+
+                        <div class="field">
+                            <label for="count">Количество:</label>
+                            <input type="text" th:field="*{count}" id="count" placeholder="Введите количество" autocomplete="off" />
+                        </div>
+                        <div class="alert-haserror-furn" th:if="${#fields.hasErrors('count')}" th:errors="*{count}">
+                            ERROR
+                        </div>
+
+                        <div class="field">
+                            <label for="shop">Магазин:</label>
+                            <select class="custom-select" th:field="*{shopsModel}" id="shop">
+                                <option th:each="shop : ${shops_item}"
+                                        th:value="${shop.getId()}"
+                                        th:text="${shop.getNameShop()}"></option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="catigory1">Категория:</label>
+                            <select class="custom-select" id="catigory1">
+                                <option th:value="Жилая">Жилая</option>
+                                <option th:value="Кухонная">Кухонная</option>
+                                <option th:value="Прихожая">Прихожая</option>
+                                <option th:value="Ванная">Ванная</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="catigory2">Вид:</label>
+                            <select class="custom-select" th:field="*{furnituresModel.categoriesModel}" id="catigory2">
+                                <option th:each="catigory : ${catigories_item}"
+                                        th:value="${catigory.id}"
+                                        th:text="${catigory.getCategories()}"></option>
+                            </select>
+                        </div>
+                        <div class="field" >
+                            <div th:if="${edit_furniture.furnituresModel.pathToFurniture != null}">
+                                <label for="path">Путь к модели:</label>
+                                <input class="hidden-input" type="text" th:value="*{furnituresModel.pathToFurniture}" id="path" readonly />
+                            </div>
+
+                            <div th:if="${edit_furniture.furnituresModel.pathToFurniture == null}">
+                                <label for="pathnull">Путь к модели:</label>
+                                <input class="hidden-input" type="text" th:value="Отсутствует" id="pathnull" readonly />
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="model">3D модель:</label>
+                            <input type="file" name="file" id="model">
+                        </div>
+                        <div class="field inline">
+                            <label>
+                                <button class="btn btn-secondary" type="submit">Сохранить</button>
+                            </label>
+                            <div class="field inline">
+                                <label>
+                                    <a th:href="@{/arhouse.arh/admin#shops}">
+                                        <input type="button" class="btn btn-secondary btn-href" value="Отмена"/>
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.js}" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script th:src="@{https://silverweb.by/wp-content/themes/consultix/js/jquery.maskedinput.min.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#telephone").mask("+7(999)999-99-99");
+    });
+</script>
+
+</html>

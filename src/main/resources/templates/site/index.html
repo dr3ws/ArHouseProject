@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>[Ar House]Главная</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css}" integrity="sha512-ZfKn7az0YmtPUojZnRXO4CUdt3pn+ogBAyGbqGplrCIR5B/tQwPGtF2q29t+zQj6mC/20w4sSl0cF5F3r0HKSQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.1/animate.min.css}" integrity="sha512-E5hbw9GiuYofTcrbba1gAU64dn/54A9nmk4IEMzmp+YmiLc0WnRLOfzofb/r6spu5CVilyob07HWGhXq7Ht7dQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css}" integrity="sha512-Nep6azRFo4niNmQ/2gCnsDcS4IP3nF77+M3jNv9YwxZPGenftLY0V6KyRaqw4T4fjlpSeqAhCQQBgrOJ+rmB8g==" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.7/themes/odometer-theme-default.min.css}" integrity="sha512-/k/mL9TQSZHAqtVqXJAiy5bt2w1P7gxdra0UlnFjVHF9a/LC2vxt7otx3BMcn79V/DZsPRwdw8tPlwbElMnIAw==" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css}" integrity="sha512-pK8UgvxxMzhXcXUsJeVp3z8GjD3oaIDCsiyf4SnCZk8yV7YEnaoE2Cl3YT9L92/9oe2vJJYSJUzlTraGIl/MNQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{../css/style.css}" />
+</head>
+
+<body>
+<div class="preloader">
+    <div class="layer"></div>
+    <div class="inner">
+        <figure><img th:src="@{../images/template/preloader.gif}" alt="Image"></figure>
+        <p>
+            <span class="text-rotater" data-text="AR House | Loading">Loading</span></p>
+    </div>
+</div>
+<div class="transition-overlay">
+    <div class="layer"></div>
+</div>
+
+<div class="side-navigation">
+    <div class="menu">
+        <ul>
+            <li><a th:href="@{/arhouse.arh}">ГЛАВНАЯ</a></li>
+            <li><a th:href="@{/arhouse.arh/request}">ЗАКАЗАТЬ ПРОЕКТ</a></li>
+            <li><a th:href="@{/arhouse.arh/preview}">ПРОСМОТР</a></li>
+            <li><a th:href="@{/arhouse.arh/projects}">НАШИ ПРОЕКТЫ</a></li>
+            <li><a th:href="@{/arhouse.arh/contact}">О НАС</a></li>
+        </ul>
+    </div>
+
+    <div class="side-content">
+        <figure>
+            <img th:src="@{../images/template/logo.png}" alt="Image">
+        </figure>
+        <p>Стремясь поднять качество жизни на более высокий уровень с помощью всех реализованных проектов,
+            ARHouse продолжает оставаться адресом роскоши.</p>
+        <ul class="gallery">
+            <li><a th:href="@{../images/template/gallery-thumb01.jpg}" data-fancybox>
+                <img th:src="@{../images/template/gallery-thumb01.jpg}" alt="Image"></a></li>
+            <li><a th:href="@{../images/template/gallery-thumb02.jpg}" data-fancybox>
+                <img th:src="@{../images/template/gallery-thumb02.jpg}" alt="Image"></a></li>
+            <li><a th:href="@{../images/template/gallery-thumb03.jpg}" data-fancybox>
+                <img th:src="@{../images/template/gallery-thumb03.jpg}" alt="Image"></a></li>
+        </ul>
+        <address>
+            Белгород, ул. Костюкова, 44<br>
+            Москва, ул. Ленина, 17
+        </address>
+        <h6>+7(982)298-59-73</h6>
+        <p><a href="#">andrei.99@yandex.ru</a></p>
+        <small>© 2021 ARHouse</small>
+    </div>
+</div><!-- end side-navigation -->
+
+<nav class="navbar">
+    <div class="container">
+        <div class="upper-side">
+            <div class="logo">
+                <a th:href="@{/arhouse.arh}"><img th:src="@{../images/template/logo.png}" alt="Image"></a>
+            </div>
+
+            <div class="phone-email"> <img th:src="@{../images/template/icon-phone.png}" alt="Image">
+                <h4>+7(982)298-59-73</h4>
+                <small><a href="#">andrei.99@yandex.ru</a></small>
+            </div>
+
+            <div class="hamburger"> <span></span> <span></span> <span></span><span></span>
+            </div>
+        </div>
+
+        <div class="menu">
+            <ul>
+                <li><a th:href="@{/arhouse.arh}">ГЛАВНАЯ</a></li>
+                <li><a th:href="@{/arhouse.arh/request}">ЗАКАЗАТЬ ПРОЕКТ</a></li>
+                <li><a th:href="@{/arhouse.arh/preview}">ПРОСМОТР</a></li>
+                <li><a th:href="@{/arhouse.arh/projects}">НАШИ ПРОЕКТЫ</a></li>
+                <li><a th:href="@{/arhouse.arh/contact}">О НАС</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="slider-index">
+    <div class="slider-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" data-background="images/template/slide01.jpg" data-stellar-background-ratio="1.15">
+                <div class="container">
+                    <h1 style="color: #ebcfa7"><span>AR House</span> для роскоши</h1>
+                    <h2>Мы реализуем достойный проект под любое помещение</h2>
+                    <a th:href="@{/arhouse.arh/request}">Заказать проект<i class="fa fa-caret-right"></i></a>
+                    <figure>
+                        <img th:src="@{../images/template/services-icon01.png}" alt="Image">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="swiper-slide" data-background="images/template/slide02.jpg" data-stellar-background-ratio="1.15">
+                <div class="container">
+                    <h1 style="color: #ebcfa7"><span>AR House</span> для успеваемости</h1>
+                    <h2>Мы создадим готовые проекты в короткие сроки</h2>
+                    <a th:href="@{/arhouse.arh/request}">Заказать проект<i class="fa fa-caret-right"></i></a>
+                    <figure>
+                        <img th:src="@{../images/template/services-icon02.png}" alt="Image">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="swiper-slide" data-background="images/template/slide03.jpg" data-stellar-background-ratio="1.15">
+                <div class="container">
+                    <h1 style="color: #ebcfa7"><span>AR House</span> для удобства</h1>
+                    <h2>Мы приготовим проект для дома вашей мечты</h2>
+                    <a th:href="@{/arhouse.arh/request}">Заказать проект<i class="fa fa-caret-right"></i></a>
+                    <figure>
+                        <img th:src="@{../images/template/services-icon03.png}" alt="Image">
+                    </figure>
+                </div>
+            </div>
+        </div><!-- Add Pagination -->
+
+        <div class="inner-elements">
+            <div class="container">
+                <div class="pagination"></div>
+                <div class="button-prev">PREV</div>
+                <div class="button-next">NEXT</div>
+            </div>
+        </div>
+    </div><!-- end slider-container -->
+</header><!-- end slider -->
+
+<section class="intro">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <figure>
+                    <div class="pattern-bg" data-stellar-ratio="1.07">
+                    </div>
+                    <div class="holder" data-stellar-ratio="1.10">
+                        <img th:src="@{../images/template/side-image01.jpg}" alt="Image">
+                    </div>
+                </figure>
+            </div>
+
+            <div class="col-lg-6 wow fadeInUp">
+                <div class="content-box">
+                    <h4><span>ARHouse</span> Construction LLC</h4>
+                    <h3>Высокое качество 3D визуализации</h3>
+                    <p>Настоящий проект сильно отличается от бесполезных «дизайнерских» картинок. Во-первых, он всегда
+                        окупается. Во-вторых, делает ремонт простым и понятным. В-третьих, решает задачи заказчика.</p>
+                    <a th:href="@{/arhouse.arh/projects}"> <img th:src="@{../images/template/icon-m2.png}" alt="Image">Просмотреть проекты</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="benefits">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 wow fadeInUp">
+                <h4>Проект <span>AR House</span></h4>
+                <h3>Проект упрощает подбор материалов. Проект необходим для контроля качества.<br>Ремонт всегда начинают с проекта.</h3>
+            </div>
+            <div class="col wow fadeInUp" data-wow-delay="0s">
+                <figure>
+                    <img th:src="@{../images/template/icon-benefits01.png}" alt="Image">
+                </figure>
+                <h6>Мы находимся в </h6>
+                <span class="odometer" data-count="8" data-status="yes">0</span><span class="extra">городах</span>
+            </div>
+            <div class="col wow fadeInUp" data-wow-delay="0.05s">
+                <figure>
+                    <img th:src="@{../images/template/icon-benefits02.png}" alt="Image">
+                </figure>
+                <h6>Следите за своим проектом</h6>
+                <span class="odometer" data-count="24" data-status="yes">0</span> <span class="extra">/7</span>
+            </div>
+            <div class="col wow fadeInUp" data-wow-delay="0.10s">
+                <figure>
+                    <img th:src="@{../images/template/icon-benefits03.png}" alt="Image">
+                </figure>
+                <h6>Гарантия качества</h6>
+                <span class="odometer" data-count="100" data-status="yes">0</span> <span class="extra">%</span>
+            </div>
+            <div class="col wow fadeInUp" data-wow-delay="0.15s">
+                <figure>
+                    <img th:src="@{../images/template/icon-benefits04.png}" alt="Image">
+                </figure>
+                <h6>Мы на рынке</h6>
+                <span class="odometer" data-count="4" data-status="yes">0</span> <span class="extra">месяца</span>
+            </div>
+            <div class="col wow fadeInUp" data-wow-delay="0.20s">
+                <figure>
+                    <img th:src="@{../images/template/icon-benefits05.png}" alt="Image">
+                </figure>
+                <h6>Уже спроектировали более</h6>
+                <span class="odometer" data-count="500" data-status="yes">0</span> <span class="extra">m²</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="recent-gallery">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5 wow fadeInUp">
+                <h4><span>Возможность</span> просмотра в VR</h4>
+                <h3>Полное сходство с реальностью</h3>
+                <a th:href="@{/arhouse.arh/projects}" class="link">Попробовать <i class="fa fa-caret-right"></i></a>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="row inner">
+                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0s">
+                        <figure data-stellar-ratio="1.07">
+                            <a th:href="@{../images/template/gallery-thumb01.jpg}" data-fancybox>
+                                <img th:src="@{../images/template/gallery-thumb01.jpg}" alt="Image">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.05s">
+                        <figure data-stellar-ratio="1.15">
+                            <a th:href="@{../images/template/gallery-thumb02.jpg}" data-fancybox>
+                                <img th:src="@{../images/template/gallery-thumb02.jpg}" alt="Image">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.10s">
+                        <figure data-stellar-ratio="1.04">
+                            <a th:href="@{../images/template/gallery-thumb03.jpg}" data-fancybox>
+                                <img th:src="@{../images/template/gallery-thumb03.jpg}" alt="Image">
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- end recent-gallery -->
+
+<section class="property-calculator">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <figure>
+                    <div class="pattern-bg" data-stellar-ratio="1.03"></div>
+                    <div class="holder" data-stellar-ratio="1.07">
+                        <img th:src="@{../images/template/side-image02.jpg}" alt="Image">
+                    </div>
+                </figure>
+            </div>
+            <div class="col-lg-6 wow fadeInUp">
+                <div class="content-box">
+                    <h4><span>AR House</span> жилая площадь</h4>
+                    <h3>Помощник в расчётах жилой площади</h3>
+                    <p>Если у Вас возникли проблемы в расчётах жилой площади, то наш калькулятор поможет вам в этом!</p>
+                    <a th:href="@{/arhouse.arh/calculator}"><img th:src="@{../images/template/icon-calculator.png}" alt="Image">Калькулятор жилой площади</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="property-plans">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 wow fadeInUp">
+                <h4><span>AR House</span> Планировка жилой площади</h4>
+                <h3>Концепция будущего проекта</h3>
+                <p>Как видите, теперь мы берем в работу маленькие квартиры, площадь которых менее 50 м². А раньше не
+                    брали! Кроме этого, ждать по ним полгода уже не нужно, всё происходит гораздо быстрее...</p>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>Тип объекта</td>
+                        <td>Любой</td>
+                    </tr>
+                    <tr>
+                        <td>Мин. площадь</td>
+                        <td>менее 50 m²</td>
+                    </tr>
+                    <tr>
+                        <td>Сроки</td>
+                        <td>от 25 дней</td>
+                    </tr>
+                    <tr>
+                        <td>Стоимость</td>
+                        <td>от 2 000 за m²</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.05s">
+                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#tab-one">Помещение 47m²</a> </li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#tab-two" role="tab">Помещение 65m²</a> </li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#tab-three" role="tab">Помещение 90m²</a> </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-one">
+                        <figure>
+                            <img th:src="@{../images/template/plan01.jpg}" alt="Image">
+                        </figure>
+                    </div>
+                    <div class="tab-pane fade" id="tab-two">
+                        <figure>
+                            <img th:src="@{../images/template/plan02.jpg}" alt="Image">
+                        </figure>
+                    </div>
+                    <div class="tab-pane fade" id="tab-three">
+                        <figure>
+                            <img th:src="@{../images/template/plan03.jpg}" alt="Image">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- property-plans -->
+
+<section class="footer-bar">
+    <div class="container">
+        <div class="inner wow fadeIn">
+            <div class="row">
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.05s">
+                    <figure>
+                        <img th:src="@{../images/template/footer-icon01.png}" alt="Image">
+                    </figure>
+                    <h3>Контактная информация</h3>
+                    <p>Белгород | ул. Костюкова, 44<br>Москва | ул. Ленина, 17</p>
+                </div>
+
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.10s">
+                    <figure>
+                        <img th:src="@{../images/template/footer-icon02.png}" alt="Image">
+                    </figure>
+                    <h3>Рабочее время</h3>
+                    <p>С ПН по Пт с <strong>09:00</strong> до <strong>18:30</strong><br>В СБ мы работаем до <strong>15:30</strong></p>
+                </div>
+
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.15s">
+                    <figure>
+                        <img th:src="@{../images/template/footer-icon03.png}" alt="Image">
+                    </figure>
+                    <h3>Офис продаж</h3>
+                    <p>Leroy Merlin<br>Москва, ул. Шаболовка, 31, стр. 1</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.05s">
+                <img th:src="@{../images/template/logo.png}" alt="Image" class="logo">
+                <p>Стремясь поднять качество жизни на более высокий уровень с помощью всех реализованных проектов,
+                    ARHouse продолжает оставаться адресом роскоши.</p>
+            </div>
+
+            <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.15s">
+                <ul class="footer-menu">
+                    <li><a th:href="@{/arhouse.arh/rules}">ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ</a></li>
+                    <li><a th:href="@{/arhouse.arh/authorization}">ДЛЯ РАБОТНИКОВ</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.25s">
+                <ul class="footer-menu">
+                    <li><a th:href="@{/arhouse.arh}">ГЛАВНАЯ</a></li>
+                    <li><a th:href="@{/arhouse.arh/request}">ЗАКАЗАТЬ ПРОЕКТ</a></li>
+                    <li><a th:href="@{/arhouse.arh/preview}">ПРОСМОТР</a></li>
+                    <li><a th:href="@{/arhouse.arh/projects}">НАШИ ПРОЕКТЫ</a></li>
+                    <li><a th:href="@{/arhouse.arh/contact}">О НАС</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.35s">
+                <div class="contact-box">
+                    <h5>Центр поддержки</h5>
+                    <h3>+7(982)298-59-73</h3>
+                    <p><a href="#">andrei.99@yandex.ru</a></p>
+                    <div class="footer-subscribe">
+                        <div class="subscribe-form">
+                            <form id="mc-form" class="group">
+                                <input type="email" value="" name="dEmail" class="email" id="mc-email" placeholder="@-mail" required="">
+                                <input type="submit" name="subscribe">
+                                <label for="mc-email" class="subscribe-message"></label>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <span class="copyright">© 2021 ARHouse</span>
+                <span class="creation">Site created by Andrew</span>
+            </div>
+        </div>
+    </div><!-- end container -->
+</footer><!-- end footer -->
+
+<!-- JS -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js}" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+<script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/js/swiper.min.js}" integrity="sha512-vKtlh10whXT2NhAshnxhceCdwq/bMyMrfeZ3p2IaF89qGCwbC94ATb7Qyg8cFs8EL3Hgz9bJBF++ZWfKn4ligg==" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js}" integrity="sha512-br+5V7meYazs+fixQjeb6e9czNwROtwV4swuqC35eEew1hqR4Ze4+osakG0UQsT3SkegXHtN/u5tdgeZOKaPsw==" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.7/odometer.min.js}" integrity="sha512-v3fZyWIk7kh9yGNQZf1SnSjIxjAKsYbg6UQ+B+QxAZqJQLrN3jMjrdNwcxV6tis6S0s1xyVDZrDz9UoRLfRpWw==" crossorigin="anonymous"></script>
+<script th:src="@{https://atuin.ru/demo/wow/wow.min.js}"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js}" integrity="sha512-PNXCBnFH9wShbV+mYnrfo0Gf3iSREgBWmYAoMIfc+Z83vVq3Nu4yxBk6j+BZ40ZIhtW3WlTQdBvW3AYLAnlgpA==" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js}" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+<script th:src="@{../js/template/script.js}"></script>
+</body>
+</html>

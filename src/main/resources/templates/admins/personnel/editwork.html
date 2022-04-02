@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Панель админа [Редактирование работника]</title>
+
+    <link rel="stylesheet" th:href="@{../../../css/styletabs.css}" />
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="menu">
+                <div class="abs edit_block">
+                    <a th:href="@{/arhouse.arh/admin#personnel}" class="backmodeladm">НАЗАД</a>
+                    <b><a th:href="@{/arhouse.arh/admin#personnel}">ПЕРСОНАЛ</a></b>
+                    <a th:href="@{/arhouse.arh/admin#requests}">ЗАЯВКИ</a>
+                    <a th:href="@{/arhouse.arh/admin#shops}">МАГАЗИНЫ</a>
+                    <a th:href="@{/arhouse.arh/admin#reports}">ОТЧЁТЫ</a>
+                    <hr>
+                </div>
+
+                <form method="post" th:object="${edit_work}">
+                    <p style="padding-left: 5%">РЕДАКТИРОВАНИЕ РАБОТНИКА</p><br>
+                    <div class="edit_form_work">
+                        <div class="field">
+                            <label for="first_name">Имя:</label>
+                            <input type="text" th:field="*{firstName}" id="first_name" placeholder="Введите имя" autocomplete="off" required />
+                        </div>
+                        <div class="alert-haserror-personnel" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                            ERROR
+                        </div>
+
+                        <div class="field">
+                            <label for="second_name">Фамилия:</label>
+                            <input type="text" th:field="*{secondName}" id="second_name" placeholder="Введите фамилию" autocomplete="off" required />
+                        </div>
+                        <div class="alert-haserror-personnel" th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}">
+                            ERROR
+                        </div>
+
+                        <div class="field">
+                            <label for="role">Должность:</label>
+                            <select class="custom-select" th:field="*{roles}" id="role">
+                                <option th:value="0">Администратор</option>
+                                <option th:value="1">Модельер</option>
+                                <option th:value="2">Дизайнер</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="login">Логин авторизации:</label>
+                            <input type="text" th:field="*{username}" id="login" placeholder="Введите логин" autocomplete="off" required />
+                        </div>
+                        <div class="alert-haserror-personnel" th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}">
+                            ERROR
+                        </div>
+                        <div class="alert-haserror-personnel" th:if="${param.error}">
+                            Пользователь с таким логином уже существует.
+                        </div>
+
+                        <div class="field">
+                            <label for="password">Пароль авторизации:</label>
+                            <input type="text" th:field="${edit_work.password}" id="password" placeholder="Введите пароль" autocomplete="off" style="-webkit-text-security: disc;" />
+                        </div>
+                        <div class="alert-haserror-personnel" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                            ERROR
+                        </div>
+
+                        <div class="field inline">
+                            <label>
+                                <button class="btn btn-secondary" type="submit">Сохранить</button>
+                            </label>
+                            <div class="field inline">
+                                <label>
+                                    <a th:href="@{/arhouse.arh/admin}">
+                                        <input type="button" class="btn btn-secondary btn-href" value="Отмена"/>
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+</html>
